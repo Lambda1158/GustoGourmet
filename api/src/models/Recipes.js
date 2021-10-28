@@ -4,12 +4,6 @@ const { DataTypes,Sequelize } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipes', {
-    id: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      allowNull: false,
-      primaryKey: true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,7 +12,7 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       allowNull:false
     },
-    puntiacion:{
+    puntuacion:{
       type:DataTypes.INTEGER
     },
     level:{
@@ -26,6 +20,11 @@ module.exports = (sequelize) => {
     },
     step:{
       type:DataTypes.STRING
+    },
+    createdInBd:{
+      type:DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue:true
     }
   });
 };
