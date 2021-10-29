@@ -1,10 +1,14 @@
 import './App.css';
+import {BrowserRouter,Route,Switch} from "react-router-dom"
+
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <h1>Henry Food</h1>
+      <h1>MAERE SEKIRO</h1>
     </div>
+    </BrowserRouter>
   );
 }
 
