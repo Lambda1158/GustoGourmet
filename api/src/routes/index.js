@@ -9,58 +9,98 @@ const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
 
 const router = Router();
 
+
+const getApiRecipe=async()=>{
+    const apiUrl=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=10&apiKey=${API_KEY}&addRecipeInformation=true`)
+    
+    const apiData= await apiUrl.data.results.map(element=>{
+        return{
+            id:element.id,
+            name:element.name,
+            sourceUrl:element.sourceUrl,
+            image:element.image,
+            diets:element.diets.map(el=>el),
+            spoonacularSourceUrl:element.spoonacularSourceUrl
+        }
+    })
+    return apiData
+
+}
+const getDatabase=async()=>{
+    return await Recipes.findAll({
+        include:{
+            model:Diets,
+            attributes:["id","name"],
+            through:{
+                attributes:[]
+            }
+        }
+    })
+}
+router.get("/allrecipe",async(req,res)=>{
+    // let name=req.query.name
+    // const resultApi=await getApiRecipe()
+    // const resultDb=getDatabase()
+    // let info=resultApi.concat(resultDb)
+    // res.send(info)
+    const dbdiet=await Diets.findAll({
+       include:Recipes
+    })
+    res.send(dbdiet)
+
+})
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/recipe",(req,res,next)=>{
+router.get("/recipe",async(req,res,next)=>{
     let name=req.query.name
-    let apipromise
-    let dbpromise
     if(name){
-        apipromise=axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&apiKey=${API_KEY}&addRecipeInformation=true`)
-        dbpromise=Recipes.findAll({ //promesa
+        let reqApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=3&apiKey=${API_KEY}&addRecipeInformation=true`)
+        let reqDb=await Recipes.findAll({ //promesa
             where: {
                 name: {
                     [Op.iLike]: "%" + name + "%"
                 }
             },
             include:{
-                model:Diets
+                model:Diets,
+                attributes:["name"],
+                through:{
+                    attributes:[]
+                }
             }
         })
-    }
-    Promise.all([apipromise,dbpromise])
-    .then((respuesta)=>{
-        const[resApi,resDb]=respuesta
-        let arrayresult=resApi.data.results
-        let aux=arrayresult.map(a=>{
-
-            let array=Object.entries(a)
-            array=array.filter(e=>{
-                if(e[0]==="id"||e[0]==="title"||e[0]==="readyInMinutes"||e[0]==="sourceUrl"||e[0]==="image"||
-                e[0]==="summary"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="spoonacularSourceUrl") return true
-            })
-            let obj=Object.fromEntries(array)
-
-            return obj
-
+        let apiData= await reqApi.data.results.map(element=>{
+            return{
+                id:element.id,
+                title:element.title,
+                name,
+                sourceUrl:element.sourceUrl,
+                image:element.image,
+                diets:element.diets.map(el=>el),
+                spoonacularSourceUrl:element.spoonacularSourceUrl
+            }
         })
-
-        let allrecipes=[...aux,...resDb]
-        res.send(allrecipes)
-    }).catch(error=>next(error))
+        return res.send([...apiData,...reqDb])
+    }else{
+        res.status(404).send("name not found")
+    }
+    
 })
 router.get("/recipe/id/:id",async(req,res)=>{
     let id=req.params.id
-    let recipepromise= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
-    let {title,readyInMinutes,servings,sourceUrl,image,imageType,summary,diets}=recipepromise.data
-    let idc=recipepromise.data.id
-    let obj={idc,title,readyInMinutes,servings,sourceUrl,image,imageType,summary,diets}
+    const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
+    let array= Object.entries(reqApi.data)
+    array=array.filter(e=>{
+        if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore")return e
+    })
+    let obj=Object.fromEntries(array)
     res.send(obj)
 
 })
 router.get("/types",async(req,res)=>{
-    let db= await Diets.findAll({raw:true})
-    res.send(db)
+    let db= await Diets.findAll()
+    res.json(db)
       
 })
 router.post("/recipe",async(req,res)=>{
@@ -68,22 +108,36 @@ router.post("/recipe",async(req,res)=>{
 
     var [receta,created]= await Recipes.findOrCreate({
         where:{
-            name,
-            resumen
+            name:name,
+            resumen:resumen
         },
-        default:{
-            puntuacion,
-            level,
-            step
+        defaults:{
+            
+            puntuacion:puntuacion,
+            level:level,
+            step:step
         }
     })
-    await receta.setDiets(diet)
+
+    var dbdiet=await Diets.findAll({
+        where:{
+            id:diet
+        }
+    })
+    receta.addDiets(dbdiet)
+    //await receta.setDiets(diet) ???
      
     Recipes.findOne({
         where:{
             name
         },
-        include:Diets
+        include:{
+            model:Diets,
+            attributes:["id","name"],
+            through:{
+                attributes:[]
+            }
+        }
     }).then(e=>{
         res.json(e)
     })

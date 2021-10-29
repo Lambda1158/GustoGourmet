@@ -60,7 +60,7 @@ conn.sync({ force: true }).then(() => {
         {
           name:"Whole30"
         }
-    ]).then(e=>{
+    ],{ignoreDuplicates:true}).then(e=>{
       console.log("dietas creadas")
       
     }).catch(err=>{
@@ -70,40 +70,31 @@ conn.sync({ force: true }).then(() => {
     var pepe =  Recipes.create({
       name: "milanesa",
       resumen:"de pollo o carne",
-      diets:[{
-        name:"Primal"
-      }]},{
-        include: Diets
-      
     });
     var pepe1 =  Recipes.create({
       name: "milanesa de carne",
       resumen:"de carne",
-      diets:[{
-        name:"Paleo"
-      }]},{
-        include : Diets
+      
     });
     var pepe2 =  Recipes.create({
       name: "milanesa de pollo ",
       resumen:"de pollo xD",
-      diets:[{
-        name:"Primal"
-      }]},{
-        include : Diets
+     
     });
     var pepe3=  Recipes.create({
       name:"potato i mean fritas",
       resumen:"son altas fritas",
-      diets:[{
-        name:"Vegan"
-      }]},{
-      include: Diets
+      
     })
     Promise.all([pepe,pepe1,pepe2,pepe3])
     .then(res => {
+      res[0].setDiets([1])
+      res[1].setDiets([1,2])
+      res[2].setDiets([1,2,3])
+      res[3].setDiets([1,2,3,4])
       console.log("milangas cargadas");
     });
+    
 
 
   });
