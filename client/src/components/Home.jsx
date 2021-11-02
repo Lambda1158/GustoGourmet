@@ -25,7 +25,7 @@ export default function Home(){
 
     }
 
-    console.log(allRecipes[1]?.diets)
+    
     return (
         <div>
             <Link to="/Cart">Crear Receta</Link>

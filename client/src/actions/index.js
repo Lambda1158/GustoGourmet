@@ -7,7 +7,7 @@ export function getRecipes(name){
     return function(dispatch) {
         axios.get(`http://localhost:3000/api/recipe?name=${name}`)
         .then((recipe) => {
-            console.log(recipe.data)
+            
             dispatch({
                 type: GET_RECIPES,
                 payload: recipe.data

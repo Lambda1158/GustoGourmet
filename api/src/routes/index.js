@@ -2,7 +2,9 @@ const { Router } = require('express');
 const {Op} = require('sequelize')
 const axios = require('axios')
 const {Recipes, Diets} = require('../db');
-const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
+const API_KEY="5463a2e6f3664850a5d61db26e539e6c"
+
+//const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -70,6 +72,7 @@ router.get("/recipe",async(req,res,next)=>{
                 }
             }
         })
+        
         let apiData= await reqApi.data.results.map(element=>{
             return{
                 id:element.id,
