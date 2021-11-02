@@ -81,7 +81,8 @@ router.get("/recipe",async(req,res,next)=>{
                 spoonacularSourceUrl:element.spoonacularSourceUrl
             }
         })
-        return res.send([...apiData,...reqDb])
+        let result=[...apiData,...reqDb]
+        return res.send(result)
     }else{
         res.status(404).send("name not found")
     }
@@ -104,18 +105,18 @@ router.get("/types",async(req,res)=>{
       
 })
 router.post("/recipe",async(req,res)=>{
-    const {name,resumen,puntuacion,level,step,diet}=req.body
+    const {name,resumen,puntuacion,level,image,step,diet}=req.body
 
     var [receta,created]= await Recipes.findOrCreate({
         where:{
-            name:name,
-            resumen:resumen
+            name,
+            resumen
         },
         defaults:{
-            
-            puntuacion:puntuacion,
-            level:level,
-            step:step
+            puntuacion,
+            level,
+            step,
+            image
         }
     })
 

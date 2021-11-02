@@ -1,14 +1,22 @@
 import './App.css';
 import {BrowserRouter,Route,Switch} from "react-router-dom"
-
+import LandingPage from './components/LandingPage';
+import Home from './components/Home';
+import Searchbar from './components/Searchbar';
 
 function App() {
   return (
-    <BrowserRouter>
     <div className="App">
-      <h1>MAERE SEKIRO</h1>
+      <Switch>
+      <Route  path="/home">
+        <Searchbar/>
+        <Home/>
+      </Route>
+      <Route exact path="/">
+        <LandingPage/>
+      </Route>
+      </Switch>
     </div>
-    </BrowserRouter>
   );
 }
 
