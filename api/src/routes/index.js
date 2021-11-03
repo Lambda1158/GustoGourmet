@@ -57,7 +57,7 @@ router.get("/allrecipe",async(req,res)=>{
 router.get("/recipe",async(req,res,next)=>{
     let name=req.query.name
     if(name){
-        let reqApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=3&apiKey=${API_KEY}&addRecipeInformation=true`)
+        let reqApi= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=30&apiKey=${API_KEY}&addRecipeInformation=true`)
         let reqDb=await Recipes.findAll({ //promesa
             where: {
                 name: {
@@ -68,11 +68,14 @@ router.get("/recipe",async(req,res,next)=>{
                 model:Diets,
                 attributes:["name"],
                 through:{
-                    attributes:[]
+                    attributes:[],
                 }
             }
         })
         
+          
+       console.log(reqDb)
+       
         let apiData= await reqApi.data.results.map(element=>{
             return{
                 id:element.id,
