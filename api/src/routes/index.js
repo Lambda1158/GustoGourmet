@@ -74,17 +74,18 @@ router.get("/recipe",async(req,res,next)=>{
         })
         
           
-       console.log(reqDb)
        
         let apiData= await reqApi.data.results.map(element=>{
             return{
                 id:element.id,
                 title:element.title,
                 name,
-                sourceUrl:element.sourceUrl,
                 image:element.image,
                 diets:element.diets.map(el=>el),
-                spoonacularSourceUrl:element.spoonacularSourceUrl
+                healthScore:element.healthScore,
+                dishTypes:element.dishTypes.map(el=>el),
+                puntuacion:element.spoonacularScore,
+
             }
         })
         let result=[...apiData,...reqDb]
@@ -96,13 +97,24 @@ router.get("/recipe",async(req,res,next)=>{
 })
 router.get("/recipe/id/:id",async(req,res)=>{
     let id=req.params.id
-    const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
-    let array= Object.entries(reqApi.data)
-    array=array.filter(e=>{
-        if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore")return e
-    })
-    let obj=Object.fromEntries(array)
-    res.send(obj)
+    let flag=req.body.flag
+    if(flag){
+        const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
+        let array= Object.entries(reqApi.data)
+        array=array.filter(e=>{
+            if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore"||e[0]==="analyzedInstructions")return e
+        })
+        let obj=Object.fromEntries(array)
+        obj.analyzedInstructions=obj.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
+        res.send(obj)
+    }else{
+        let reqDb=await Recipes.findOne({
+            where:{
+                id
+            }
+        })
+        res.json(reqDb)
+    }
 
 })
 router.get("/types",async(req,res)=>{

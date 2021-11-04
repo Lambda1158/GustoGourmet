@@ -60,6 +60,9 @@ conn.sync({ force: true }).then(() => {
         },
         {
           name:"Whole30"
+        },
+        {
+          name: "Dairy Free"
         }
     ],{ignoreDuplicates:true}).then(e=>{
       console.log("dietas creadas")
@@ -95,7 +98,7 @@ conn.sync({ force: true }).then(() => {
       name:"potato i mean fritas",
       resumen:"son altas fritas",
       image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy352k-oNfCYnb33wl0ktFYbTqeCgS0plelg&usqp=CAU",
-      puntuacion:10,
+      puntuacion:11,
       level:6
       
     })
