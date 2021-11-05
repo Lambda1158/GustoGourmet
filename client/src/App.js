@@ -2,16 +2,19 @@ import './App.css';
 import {BrowserRouter,Route,Switch} from "react-router-dom"
 import LandingPage from './components/LandingPage';
 import Home from './components/Home';
-import Searchbar from './components/Searchbar';
+import Create from "./components/CreateRecipe"
+import CreateRecipe from './components/CreateRecipe';
 
 function App() {
   return (
     <div className="App">
       <Switch>
       <Route  path="/home">
-        <Searchbar/>
         <Home/>
       </Route>
+      <Route path="/post">
+        <CreateRecipe></CreateRecipe>
+        </Route>
       <Route exact path="/">
         <LandingPage/>
       </Route>

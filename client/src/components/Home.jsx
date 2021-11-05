@@ -5,8 +5,10 @@ import { getRecipes } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
+import Searchbar from "./Searchbar";
 
 export default function Home(){
+    const [orden,setOrden]=useState("")
     const [buscar,setBuscar]=useState("milanesa")
     const dispatch=useDispatch()
     var allRecipes=useSelector((state)=> state.recipe)
@@ -31,18 +33,21 @@ export default function Home(){
     function handleClick(e){
         e.preventDefault()
         dispatch(getRecipes(buscar))
+        setBuscar("")
 
     }
 
     
     return (
         <div>
-            <Link to="/Cart">Crear Receta</Link>
+            <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
+            <Link to="/post">Crear Receta</Link>
             <label className="label" htmlFor="title">Nombre de receta </label>
             <input
               type="text"
               id="receta"
               autoComplete="off"
+              placeholder="Buscar..."
               value={buscar}
               onChange={(e) => handleCange(e)}
             />

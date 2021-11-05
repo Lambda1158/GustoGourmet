@@ -1,8 +1,9 @@
-import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION} from "../actions/index"
+import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS} from "../actions/index"
 
 const initialState={
     recipe:[],
-    backupAllRecipes:[]
+    backupAllRecipes:[],
+    diets:[]
 
 }
 
@@ -101,6 +102,16 @@ export default function rootReducer(state=initialState,action){
             return{
                 ...state,
                 recipe:sortArr1
+            }
+        case GET_DIETS:
+            var filterDiets=action.payload.map(e=>e.name)
+            return{
+                ...state,
+                diets: filterDiets
+            }
+        case POST_RECIPE:
+            return{
+                ...state    
             }
         default:
             return state

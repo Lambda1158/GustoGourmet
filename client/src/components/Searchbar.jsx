@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { filterBySource, filterRecipeByDiets, orderByName, orderByPuntuacion } from "../actions";
 import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-export default function Searchbar(){
-    const [orden,setOrden]=useState("")
+export default function Searchbar( {paginado,setOrden}){
+
+    
 
     const dispatch=useDispatch()
     function handleFilterRecipe(e){
@@ -16,13 +17,13 @@ export default function Searchbar(){
     function handleSortByName(e){
         e.preventDefault()
         dispatch(orderByName(e.target.value))
-        //paginado
+        paginado(1)
         setOrden(`Orden ${e.target.value}`)
     }
     function handleSortByPuntuacion(e){
         e.preventDefault()
         dispatch(orderByPuntuacion(e.target.value))
-        //paginado
+        paginado(1)
         setOrden(`Orden ${e.target.value}`)
     }
 
