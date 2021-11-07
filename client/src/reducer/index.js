@@ -1,9 +1,10 @@
-import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS} from "../actions/index"
+import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS, GET_BY_ID} from "../actions/index"
 
 const initialState={
     recipe:[],
     backupAllRecipes:[],
-    diets:[]
+    diets:[],
+    detail:[]
 
 }
 
@@ -111,6 +112,11 @@ export default function rootReducer(state=initialState,action){
         case POST_RECIPE:
             return{
                 ...state    
+            }
+        case GET_BY_ID:
+            return{
+                ...state,
+                detail:[action.payload]
             }
         default:
             return state

@@ -2,6 +2,24 @@ import React, {useState,useEffect} from "react";
 import { Link,useHistory } from "react-router-dom";
 import { postRecipe,getDiets } from "../actions";
 import { useDispatch,useSelector } from "react-redux";
+import "./css/createrecipe.css"
+
+function validateInput(input){
+    let error={}
+    if (!input.name){
+        error.name="Se requiere un nombre"
+    } if(!input.title){
+        error.title="Se requiere un titulo"
+    } if(!input.summary){
+        error.summary="Este campo es obligatorio"
+    } if(!input.puntuacion){
+        error.puntuacion="Puntuacion del 1 al 100"
+    } if(!input.healthScore){
+        error.healthScore="Healthscore tiene q ser un numero"
+    }
+    return error
+}
+
 export default function CreateRecipe(){
     const dispatch =useDispatch()
     const history=useHistory()
@@ -11,11 +29,11 @@ export default function CreateRecipe(){
         name:"",
         title:"",
         summary:"",
-        puntuacion:0,
+        puntuacion:null,
         step:"",
         diet:[],
         image:"",
-        healhScore:0,
+        healthScore:null,
         dishtext:"",
         dishTypes:[]
     })
@@ -25,6 +43,10 @@ export default function CreateRecipe(){
             ...input,
             [e.target.name]:e.target.value
         })
+        setError(validateInput({
+            ...input,
+            [e.target.name]:e.target.value
+        }))
     }
     function handleCheck(e){
             setInput({
@@ -47,9 +69,18 @@ export default function CreateRecipe(){
     function handleSubmit(e){
         e.preventDefault()
         console.log(input)
+        
         dispatch(postRecipe(input))
         alert("Recipe creada , anda a buscarla al home :D")
         history.push("/home")
+    }
+    function pop(btn,e){
+        console.log(btn.target.name)
+        btn.preventDefault()
+        setInput({
+            ...input,
+            [btn.target.name]: input[btn.target.name].filter(dish=>dish!==e)
+        })
     }
 
 
@@ -66,6 +97,7 @@ export default function CreateRecipe(){
                         name="name"
                         onChange={e=>handleChange(e)}
                     />
+                    {error.name&&(<p className="error">{error.name}</p>)}
                 </div>
                 <div>
                     <label>Title</label>
@@ -75,34 +107,37 @@ export default function CreateRecipe(){
                         name="title"
                         onChange={e=>handleChange(e)}
                     />
+                    {error.title &&(<p className="error">{error.title}</p>)}
                 </div>
                 <div>
                     <label>Summary</label>
                     <input
                         type="text"
-                        value={input.sumary}
+                        value={input.summary}
                         name="summary"
                         onChange={e=>handleChange(e)}
                     />
+                    {error.summary &&(<p className="error">{error.summary}</p>)}
                 </div>
                 <div>
                     <label>Puntuacion</label>
                     <input
-                        placeholder=" lala"
                         type="number"
                         value={input.puntuacion}
                         name="puntuacion"
                         onChange={e=>handleChange(e)}
                     />
+                    {error.puntuacion && (<p className="error">{error.puntuacion}</p>)}
                 </div>
                 <div>
                     <label>healthScore</label>
                     <input
                         type="number"
-                        value={input.healhScore}
-                        name="healhScore"
+                        value={input.healthScore}
+                        name="healthScore"
                         onChange={e=>handleChange(e)}
                     />
+                    {error.healthScore && (<p className="error">{error.healthScore}</p>)}
                 </div>
                 <div>
                     <label>Paso a Paso</label>
@@ -140,7 +175,10 @@ export default function CreateRecipe(){
                     <option type="checkbox" id="Dairy Free" value="12">Dairy Free</option>
                     <option type="checkbox" id="lacto ovo vegetarian" value="13">lacto ovo vegetarian</option>
                     </select>
-                    <ui><li>{input.diet.map(e=>e + " , ")}</li></ui>
+                    {input.diet.map(e=>{
+                        return <div><p>{e}</p><button name="diet" onClick={(btn)=>{pop(btn,e)}}>X</button>
+                        </div>
+                    })}
                 </div>
                 <div>
                     <label>DishType</label>
@@ -151,7 +189,9 @@ export default function CreateRecipe(){
                         onChange={e=>handleChange(e)}
                     />
                     <button onClick={e=>handleDish(e)} >Push dish</button>
-                    <p>{input.dishTypes.map(e=>e+" , ")}</p>
+                    {input.dishTypes.map(e=>{
+                        return <div><p>{e}</p><button name="dishTypes" onClick={(btn)=>{pop(btn,e)}}>X</button></div>
+                    })}
                 </div>
                 
                 <button type="submit">POST!</button>

@@ -2,9 +2,9 @@ const { Router } = require('express');
 const {Op} = require('sequelize')
 const axios = require('axios')
 const {Recipes, Diets} = require('../db');
-const API_KEY="5463a2e6f3664850a5d61db26e539e6c"
+//const API_KEY="5463a2e6f3664850a5d61db26e539e6c"
 
-//const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
+const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -126,6 +126,13 @@ router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
         let reqDb=await Recipes.findOne({
             where:{
                 id
+            },
+            include:{
+                model:Diets,
+                attributes:["id","name"],
+                through:{
+                    attributes:[]
+                }
             }
         })
         res.json(reqDb)
@@ -140,30 +147,36 @@ router.get("/types",async(req,res)=>{
 router.post("/recipe",async(req,res)=>{
     let {name,summary,puntuacion,healthScore,image,step,diet,dishTypes,title}=req.body
     diet=diet.map(e=>parseInt(e))
-    console.log(diet)
     dishTypes=dishTypes.join(" ")
     image? image : image="https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1"
-    var [receta,created]= await Recipes.findOrCreate({
-        where:{
-            name,
-            summary
-        },
-        defaults:{
-            puntuacion:parseInt(puntuacion),
-            healthScore:parseInt(healthScore),
-            step,
-            image,
-            dishTypes,
-            title
-        }
-    })
+    try{
+        var [receta,created]= await Recipes.findOrCreate({
+            where:{
+                name,
+                summary
+            },
+            defaults:{
+                puntuacion:parseInt(puntuacion),
+                healthScore:parseInt(healthScore),
+                step,
+                image,
+                dishTypes,
+                title
+            }
+        })
 
-    var dbdiet=await Diets.findAll({
-        where:{
-            id:diet
-        }
-    })
-    receta.addDiets(dbdiet)
+        var dbdiet=await Diets.findAll({
+            where:{
+                id:diet
+            }
+        })
+        receta.addDiets(dbdiet)
+        
+    }catch(error){
+        console.log(error)
+    }
+
+    
     //await receta.setDiets(diet) ???
      
     Recipes.findOne({

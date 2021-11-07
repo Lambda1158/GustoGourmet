@@ -26,6 +26,10 @@ export default function Home(){
         dispatch(getRecipes("milanesa"))
 
     },[])
+    useEffect(()=>{
+        dispatch(getRecipes("milanesa"))
+
+    },[orden])
     function handleCange(e){
         e.preventDefault()
         setBuscar(e.target.value)
@@ -55,7 +59,7 @@ export default function Home(){
           <Paginado recipePerPage={recipePerPage} allRecipes={allRecipes.length} paginado={paginado}/>
 
           {currentRecipe?.map((receta)=>{
-              return <Card  title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
+              return <Card createdInBd={receta.createdInBd} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
           })}
           
         </div>

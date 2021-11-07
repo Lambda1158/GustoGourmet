@@ -1,6 +1,6 @@
 import React from "react";
-
-export default function Card({title,image,diets,puntuacion}){
+import { Link } from "react-router-dom";
+export default function Card({title,image,diets,puntuacion,id,createdInBd}){
     if(typeof diets[0] ==="object"){
         diets=diets.map(e=>e.name)
     }
@@ -12,6 +12,7 @@ export default function Card({title,image,diets,puntuacion}){
                 return <p>{e}</p>
             })}
             <p>{puntuacion}</p>
+            <Link to={`/detail/${id},${createdInBd?1:0}`}>more info</Link>
         </div>
     )
 }
