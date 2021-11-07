@@ -50,7 +50,7 @@ export default function rootReducer(state=initialState,action){
         }
 
         case ORDER_BY_NAME:
-            let sortArr = action.payload==="asc" ? 
+            const sortArr = action.payload==="asc" ? 
                 state.recipe.sort(function(a,b){
                     if(a.name>b.name){
                         return 1
@@ -62,10 +62,10 @@ export default function rootReducer(state=initialState,action){
                 })
             
             : state.recipe.sort(function(a,b){
-                if(a.name>b.name){
+                if(a.title>b.title){
                     return -1
                 }
-                if(b.name>a.name){
+                if(b.title>a.title){
                     return 1
                 }
                 return 0
@@ -76,10 +76,9 @@ export default function rootReducer(state=initialState,action){
                 recipe:sortArr
             }
         case ORDER_BY_PUNTUACION:
-            console.log(action.payload)
-            let sortArr1 = action.payload==="asc" ? 
+            const sortArr1 = action.payload==="asc" ? 
             state.recipe.sort(function(a,b){
-                console.log(a.puntuacion)
+                
                 if(a.puntuacion>b.puntuacion){
                     
                     return 1

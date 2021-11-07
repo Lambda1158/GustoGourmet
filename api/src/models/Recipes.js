@@ -8,17 +8,23 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    resumen:{
+    summary:{
       type:DataTypes.STRING,
       allowNull:false
+    },
+    title:{
+      type: DataTypes.STRING
     },
     puntuacion:{
       type:DataTypes.INTEGER
     },
-    level:{
+    healthScore:{
       type:DataTypes.INTEGER
     },
     step:{
+      type:DataTypes.STRING
+    },
+    dishTypes:{
       type:DataTypes.STRING
     },
     createdInBd:{

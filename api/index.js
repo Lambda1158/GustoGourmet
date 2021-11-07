@@ -63,6 +63,9 @@ conn.sync({ force: true }).then(() => {
         },
         {
           name: "Dairy Free"
+        },
+        {
+          name:"lacto ovo vegetarian"
         }
     ],{ignoreDuplicates:true}).then(e=>{
       console.log("dietas creadas")
@@ -72,34 +75,38 @@ conn.sync({ force: true }).then(() => {
     })
 
     var pepe =  Recipes.create({
-      name: "milanesa a la napo",
-      resumen:"a la napo con salsa y queso",
+      name: "milanesa",
+      title:"Milanesa a la Napolitana",
+      summary:"a la napo con salsa y queso",
       puntuacion:10,
-      level:6,
+      healthScore:6,
       image:"https://i.ytimg.com/vi/l1wjqM16g7I/maxresdefault.jpg"
     });
     var pepe1 =  Recipes.create({
-      name: "milanesa de carne",
-      resumen:"de carne",
+      name: "milanesa",
+      title:"Milanesa de Carne",
+      summary:"de carne",
       puntuacion:9,
-      level:6,
+      healthScore:6,
       image:"https://img-global.cpcdn.com/recipes/e3a271511d89f044/400x400cq70/photo.jpg"
       
     });
     var pepe2 =  Recipes.create({
-      name: "milanesa de pollo ",
-      resumen:"de pollo xD",
+      name: "milanesa",
+      title:"Milanesa de Pollo",
+      summary:"de pollo xD",
       puntuacion:8,
-      level:6,
+      healthScore:6,
       image:"https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2019/08/como-cocinar-milanesas-de-pollo-sin-aceite.jpg"
      
     });
     var pepe3=  Recipes.create({
-      name:"potato i mean fritas",
-      resumen:"son altas fritas",
+      name:"potato",
+      title:"Papas Fritas",
+      summary:"son altas fritas",
       image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy352k-oNfCYnb33wl0ktFYbTqeCgS0plelg&usqp=CAU",
       puntuacion:11,
-      level:6
+      healthScore:6
       
     })
     Promise.all([pepe,pepe1,pepe2,pepe3])

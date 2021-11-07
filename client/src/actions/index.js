@@ -55,10 +55,15 @@ export function orderByPuntuacion(payload){
 }
 
 export function postRecipe(payload){
-    return async function (dispatch){
-        const response= await axios.post("http://localhost:3000/api/recipe",payload)
-        console.log(response)
-        return response
+    return async function(dispatch){
+        try{
+            await axios.post(`http://localhost:3001/recipes/create`, payload);
+            return dispatch({
+                type: POST_RECIPE,
+            })
+        }catch(error){
+            console.log(error);
+        }
     }
 }
 

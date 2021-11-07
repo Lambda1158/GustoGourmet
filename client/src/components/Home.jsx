@@ -55,7 +55,7 @@ export default function Home(){
           <Paginado recipePerPage={recipePerPage} allRecipes={allRecipes.length} paginado={paginado}/>
 
           {currentRecipe?.map((receta)=>{
-              return <Card  name={receta.name} image={receta.image} diets={receta.diets} />
+              return <Card  title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
           })}
           
         </div>

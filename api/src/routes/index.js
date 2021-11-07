@@ -95,18 +95,33 @@ router.get("/recipe",async(req,res,next)=>{
     }
     
 })
-router.get("/recipe/id/:id",async(req,res)=>{
+router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
     let id=req.params.id
-    let flag=req.body.flag
-    if(flag){
+    let flag=req.params.flag
+    console.log(flag)
+    if(flag==0){
         const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
-        let array= Object.entries(reqApi.data)
-        array=array.filter(e=>{
-            if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore"||e[0]==="analyzedInstructions")return e
-        })
-        let obj=Object.fromEntries(array)
-        obj.analyzedInstructions=obj.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
-        res.send(obj)
+        // let array= Object.entries(reqApi.data)
+        // array=array.filter(e=>{
+        //     if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore"||e[0]==="analyzedInstructions")return e
+        // })
+        // let obj=Object.fromEntries(array)
+        // obj.analyzedInstructions=obj.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
+        
+        const myinfo={
+            title:reqApi.data.title,
+            name:reqApi.data.name,
+            diets:reqApi.data.diets,
+            steps:reqApi.data.steps,
+            healthScore:reqApi.data.healthScore,
+            summary:reqApi.data.summary,
+            puntuacion:reqApi.data.spoonacularScore,
+            dishTypes:reqApi.data.dishTypes,
+            analyzedInstructions:reqApi.data.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
+        }
+
+        res.send(myinfo)
+
     }else{
         let reqDb=await Recipes.findOne({
             where:{
@@ -123,18 +138,23 @@ router.get("/types",async(req,res)=>{
       
 })
 router.post("/recipe",async(req,res)=>{
-    const {name,resumen,puntuacion,level,image,step,diet}=req.body
-
+    let {name,summary,puntuacion,healthScore,image,step,diet,dishTypes,title}=req.body
+    diet=diet.map(e=>parseInt(e))
+    console.log(diet)
+    dishTypes=dishTypes.join(" ")
+    image? image : image="https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1"
     var [receta,created]= await Recipes.findOrCreate({
         where:{
             name,
-            resumen
+            summary
         },
         defaults:{
-            puntuacion,
-            level,
+            puntuacion:parseInt(puntuacion),
+            healthScore:parseInt(healthScore),
             step,
-            image
+            image,
+            dishTypes,
+            title
         }
     })
 
