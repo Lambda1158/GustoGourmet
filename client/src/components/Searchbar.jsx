@@ -10,9 +10,11 @@ export default function Searchbar( {paginado,setOrden}){
     const dispatch=useDispatch()
     function handleFilterRecipe(e){
         dispatch(filterRecipeByDiets(e.target.value))
+        paginado(1)
     }
     function handleFilterBySource(e){
         dispatch(filterBySource(e.target.value))
+        paginado(1)
     }
     function handleSortByName(e){
         

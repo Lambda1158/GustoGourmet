@@ -28,7 +28,7 @@ const Detail= (props)=>{
                     <li>{myRecipe[0].puntuacion}</li>
                     <li>{myRecipe[0].healthScore}</li>
                 </ul>
-                <h3>{myRecipe[0].dishTypes?.map(e=>e+" ")}</h3>
+                <h3>{myRecipe[0].createdInBd?myRecipe[0].dishTypes : myRecipe[0].dishTypes?.map(e=>e+" ")}</h3>
                 <div dangerouslySetInnerHTML={{ __html:myRecipe[0].summary }} />
                 <p>{myRecipe[0].createdInBd? myRecipe[0].step : myRecipe[0].analyzedInstructions.map(e=> e +"  ")}</p>
             </div>

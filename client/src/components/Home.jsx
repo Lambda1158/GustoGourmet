@@ -12,6 +12,7 @@ export default function Home(){
     const [buscar,setBuscar]=useState("milanesa")
     const dispatch=useDispatch()
     var allRecipes=useSelector((state)=> state.recipe)
+    
     const [currentPage,setCurrentPage]=useState(1)
     const [recipePerPage,setRecipePerPage]=useState(9)
     const indexOfLastRecipe=currentPage*recipePerPage
@@ -25,7 +26,7 @@ export default function Home(){
     useEffect(()=>{
         dispatch(getRecipes("milanesa"))
 
-    },[dispatch])
+    },[])
     
     function handleCange(e){
         e.preventDefault()

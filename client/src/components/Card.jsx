@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./css/card.css"
 export default function Card({title,image,diets,puntuacion,id,createdInBd}){
     if(typeof diets[0] ==="object"){
         diets=diets.map(e=>e.name)
@@ -11,8 +12,8 @@ export default function Card({title,image,diets,puntuacion,id,createdInBd}){
             {diets?.map(e=>{
                 return <p>{e}</p>
             })}
-            <p>{puntuacion}</p>
-            <Link to={`/detail/${id},${createdInBd?1:0}`}>more info</Link>
+            <p>Puntuacion: {puntuacion}</p>
+            <Link className="link" to={`/detail/${id},${createdInBd?1:0}`}>more info</Link>
         </div>
     )
 }
