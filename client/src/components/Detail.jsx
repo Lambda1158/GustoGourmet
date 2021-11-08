@@ -12,8 +12,8 @@ const Detail= (props)=>{
         dispatch(getDetail(id,flag))
     },[])
     const myRecipe= useSelector((state)=>state.detail)
+    console.log(myRecipe[0]?.analyzedInstructions)
     
-    console.log(myRecipe[0])
 
 
 
@@ -29,8 +29,8 @@ const Detail= (props)=>{
                     <li>{myRecipe[0].healthScore}</li>
                 </ul>
                 <h3>{myRecipe[0].dishTypes?.map(e=>e+" ")}</h3>
-                <p>{myRecipe[0].summary}</p>
-                <p>{myRecipe[0].createdInBd? myRecipe[0].step:myRecipe[0].analyzedInstructions[0]}</p>
+                <div dangerouslySetInnerHTML={{ __html:myRecipe[0].summary }} />
+                <p>{myRecipe[0].createdInBd? myRecipe[0].step : myRecipe[0].analyzedInstructions.map(e=> e +"  ")}</p>
             </div>
             : <p>Loading ...</p>}
             <Link to="/home">take me back</Link>

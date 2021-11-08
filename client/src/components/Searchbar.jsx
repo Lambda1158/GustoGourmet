@@ -15,12 +15,14 @@ export default function Searchbar( {paginado,setOrden}){
         dispatch(filterBySource(e.target.value))
     }
     function handleSortByName(e){
+        
         e.preventDefault()
         dispatch(orderByName(e.target.value))
         paginado(1)
         setOrden(`Orden ${e.target.value}`)
     }
     function handleSortByPuntuacion(e){
+        
         e.preventDefault()
         dispatch(orderByPuntuacion(e.target.value))
         paginado(1)
@@ -35,11 +37,11 @@ export default function Searchbar( {paginado,setOrden}){
         <div>
             <h1>La nav bar</h1>
             <Link to="/">take me back to Landingpage</Link>
-            <select name="puntuacion" onChange={(e)=>{handleSortByPuntuacion(e)}}>
-                <option value="asc">Mas puntuados</option>
-                <option value="des">Menos puntuados</option>
+            <select  onChange={(e)=>{handleSortByPuntuacion(e)}}>
+                <option value="mayor">Mas puntuados</option>
+                <option value="menor">Menos puntuados</option>
             </select>
-            <select name="asc_desc" onChange={(e)=>{handleSortByName(e)}}>
+            <select  onChange={(e)=>{handleSortByName(e)}}>
                 <option value="asc">Ascendente</option>
                 <option value="des">Descendente</option>
             </select>

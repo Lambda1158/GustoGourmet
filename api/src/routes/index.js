@@ -98,7 +98,6 @@ router.get("/recipe",async(req,res,next)=>{
 router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
     let id=req.params.id
     let flag=req.params.flag
-    console.log(flag)
     if(flag==0){
         const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
         // let array= Object.entries(reqApi.data)
@@ -117,7 +116,8 @@ router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
             summary:reqApi.data.summary,
             puntuacion:reqApi.data.spoonacularScore,
             dishTypes:reqApi.data.dishTypes,
-            analyzedInstructions:reqApi.data.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
+            analyzedInstructions:reqApi.data.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step),
+            image:reqApi.data.image
         }
 
         res.send(myinfo)

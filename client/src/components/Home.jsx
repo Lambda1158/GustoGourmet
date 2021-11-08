@@ -25,11 +25,8 @@ export default function Home(){
     useEffect(()=>{
         dispatch(getRecipes("milanesa"))
 
-    },[])
-    useEffect(()=>{
-        dispatch(getRecipes("milanesa"))
-
-    },[orden])
+    },[dispatch])
+    
     function handleCange(e){
         e.preventDefault()
         setBuscar(e.target.value)
@@ -40,7 +37,7 @@ export default function Home(){
         setBuscar("")
 
     }
-
+   
     
     return (
         <div>
