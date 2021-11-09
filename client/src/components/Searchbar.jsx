@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { filterBySource, filterRecipeByDiets, orderByName, orderByPuntuacion } from "../actions";
-import { useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+
+import { useDispatch } from "react-redux";
 export default function Searchbar( {paginado,setOrden}){
 
     

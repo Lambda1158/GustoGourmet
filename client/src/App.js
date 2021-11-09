@@ -8,9 +8,9 @@ import Detail from './components/Detail';
 function App() {
   return (
     <div className="App">
-      <Switch>
+      
       <Route  path="/home">
-        <Home/>
+        <Home data-testid="button"/>
       </Route>
       <Route path="/post">
         <CreateRecipe></CreateRecipe>
@@ -19,7 +19,7 @@ function App() {
       <Route exact path="/">
         <LandingPage/>
       </Route>
-      </Switch>
+      
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS, GET_BY_ID} from "../actions/index"
+import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS, GET_BY_ID, DELETE, RESET_RECIPE} from "../actions/index"
 
 const initialState={
     recipe:[],
@@ -118,6 +118,17 @@ export default function rootReducer(state=initialState,action){
             return{
                 ...state,
                 detail:[action.payload]
+            }
+        case DELETE:
+            var deleteRecipe=state.recipe.filter(e=>e.id!==Number(action.payload))
+            return{
+                ...state,
+                recipe:deleteRecipe
+            }
+        case RESET_RECIPE:
+            return{
+                ...state,
+                detail:[]
             }
         default:
             return state

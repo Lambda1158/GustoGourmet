@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import { Link,useHistory } from "react-router-dom";
-import { postRecipe,getDiets } from "../actions";
+import { postRecipe } from "../actions";
 import { useDispatch,useSelector } from "react-redux";
 import "./css/createrecipe.css"
 
@@ -92,6 +92,7 @@ export default function CreateRecipe(){
                 <div>
                     <label>Name</label>
                     <input
+                        id="1"
                         type="text"
                         value={input.name}
                         name="name"

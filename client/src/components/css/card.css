@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .card{
+    padding: 1rem;
+    border: 1px solid #777;
+    border-radius: 0.25rem;
+    background: white;
+    
+  }
+  .body{
+      font-size: .9rem;
+      color: black;
+  }
+  
+  h2{
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+      color: black;
+  }
+  .footer{
+    margin-top: 1rem;
+  }
+  .btn{
+      background-color: aqua;
+      color:  white;
+      border:none;
+      padding: .5em .75em;
+      border-radius: .25em;
+  }
+  .btn:hover, .btn:focus{
+      background-color: turquoise;
+  }
+  .btn + .btn{
+      margin-left: .50rem;
+  }

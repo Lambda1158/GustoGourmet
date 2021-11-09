@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { getDetail } from "../actions";
+import { getDetail, resetRecipeDetail } from "../actions";
 import { useEffect } from "react";
 
 const Detail= (props)=>{
     let id=props.match.params.id
     let flag=props.match.params.flag
     const dispatch=useDispatch()
+
     useEffect(()=>{
         dispatch(getDetail(id,flag))
+        return()=>{
+            dispatch(resetRecipeDetail())
+        }
     },[])
     const myRecipe= useSelector((state)=>state.detail)
     console.log(myRecipe[0]?.analyzedInstructions)

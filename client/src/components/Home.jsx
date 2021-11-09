@@ -9,7 +9,7 @@ import Searchbar from "./Searchbar";
 
 export default function Home(){
     const [orden,setOrden]=useState("")
-    const [buscar,setBuscar]=useState("milanesa")
+    const [buscar,setBuscar]=useState("")
     const dispatch=useDispatch()
     var allRecipes=useSelector((state)=> state.recipe)
     
@@ -23,10 +23,10 @@ export default function Home(){
         setCurrentPage(pagNumber)
     }
 
-    useEffect(()=>{
-        dispatch(getRecipes("milanesa"))
-
-    },[])
+    // useEffect(()=>{
+    //     dispatch(getRecipes("milanesa"))
+        
+    // },[])
     
     function handleCange(e){
         e.preventDefault()

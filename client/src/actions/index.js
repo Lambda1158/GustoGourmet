@@ -8,6 +8,8 @@ export const ORDER_BY_PUNTUACION="ORDER_BY_PUNTUACION"
 export const POST_RECIPE="POST_RECIPE"
 export const GET_DIETS="GET_DIETS"
 export const GET_BY_ID="GET_BY_ID"
+export const DELETE="DELETE"
+export const RESET_RECIPE="RESET_RECIPE"
 
 
  
@@ -87,5 +89,16 @@ export function getDetail(id,flag){
             type : GET_BY_ID,
             payload:info.data
         })
+    }
+}
+export function deleteRecipe(payload){
+    return {
+        type:DELETE,
+        payload
+    }
+}
+export function resetRecipeDetail(){
+    return{
+        type:RESET_RECIPE
     }
 }
