@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import Searchbar from "./Searchbar";
+import "./css/home.css"
 
 export default function Home(){
     const [orden,setOrden]=useState("")
@@ -43,22 +44,29 @@ export default function Home(){
     return (
         <div>
             <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
-            <Link to="/post">Crear Receta</Link>
-            <label className="label" htmlFor="title">Nombre de receta </label>
+            <label className="label" htmlFor="title">Buscar por nombre </label>
+            <div className="box">
             <input
+              className="input"
               type="text"
               id="receta"
               autoComplete="off"
-              placeholder="Buscar..."
+              placeholder="Recipe..."
               value={buscar}
               onChange={(e) => handleCange(e)}
             />
-          <button onClick={e=> handleClick(e)}>BUSCAR</button>
+          <button className="buscar" onClick={e=> handleClick(e)}>Search</button>
+            </div>
+          
+          {allRecipes.length>9?
           <Paginado recipePerPage={recipePerPage} allRecipes={allRecipes.length} paginado={paginado}/>
+          :<div className="nopagina">Single page</div>}
 
+            <div className="grid">
           {currentRecipe?.map((receta)=>{
               return <Card createdInBd={receta.createdInBd} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
           })}
+            </div>
           
         </div>
     )

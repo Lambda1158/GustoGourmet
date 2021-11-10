@@ -5,16 +5,16 @@ import { useDispatch,useSelector } from "react-redux";
 import "./css/createrecipe.css"
 
 function validateInput(input){
-    let error={}
+    var error={}
     if (!input.name){
         error.name="Se requiere un nombre"
-    } if(!input.title){
+    }else if(!input.title){
         error.title="Se requiere un titulo"
-    } if(!input.summary){
+    }else if(!input.summary){
         error.summary="Este campo es obligatorio"
-    } if(!input.puntuacion){
+    }else if(!input.puntuacion){
         error.puntuacion="Puntuacion del 1 al 100"
-    } if(!input.healthScore){
+    }else if(!input.healthScore){
         error.healthScore="Healthscore tiene q ser un numero"
     }
     return error
@@ -177,8 +177,8 @@ export default function CreateRecipe(){
                     <option type="checkbox" id="lacto ovo vegetarian" value="13">lacto ovo vegetarian</option>
                     </select>
                     {input.diet.map(e=>{
-                        return <div><p>{e}</p><button name="diet" onClick={(btn)=>{pop(btn,e)}}>X</button>
-                        </div>
+                        return <><p>{e}</p><button name="diet" onClick={(btn)=>{pop(btn,e)}}>X</button>
+                        </>
                     })}
                 </div>
                 <div>
@@ -191,11 +191,11 @@ export default function CreateRecipe(){
                     />
                     <button onClick={e=>handleDish(e)} >Push dish</button>
                     {input.dishTypes.map(e=>{
-                        return <div><p>{e}</p><button name="dishTypes" onClick={(btn)=>{pop(btn,e)}}>X</button></div>
+                        return <><p>{e}</p><button name="dishTypes" onClick={(btn)=>{pop(btn,e)}}>X</button></>
                     })}
                 </div>
+                {!input.name||!input.summary?<p>llene bien el forum</p>:<button className="btn" type="submit">POST!</button>}
                 
-                <button type="submit">POST!</button>
             </form>
         </div>
     )

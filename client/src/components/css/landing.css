@@ -1,5 +1,19 @@
+body{
+    
+}
+
 .title{
     text-align: center;
     font-size: large;
     color: white;
+    margin-bottom: 10px;   
+    font-size: 2rem;
+    
+}
+.b{
+    background-color: rgb(199, 15, 168);
+    color:  white;
+    border:none;
+    padding: .5em .75em;
+    border-radius: .25em;
 }

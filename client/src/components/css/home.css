@@ -1,0 +1,40 @@
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.nopagina{
+   margin-top: 10px;
+}
+.box{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.buscar{
+  height: 30px;
+  border-radius: 0 25px 25px 0;
+  width: 80px;
+  background-color: rgb(199, 15, 168);
+  color:  white;
+  border:none;
+  padding: .5em .75em;
+  
+}
+.buscar:hover, .btn:focus{
+    background-color: rgb(218, 24, 59);
+}
+
+
+.input{
+    
+    display:inline-block;
+    box-sizing: border-box;
+    border:none;
+    outline : none;
+    height: 30px;
+    width: 200px;
+    border-radius: 25px 0 0 25px;
+    padding: 0 25px;
+
+}

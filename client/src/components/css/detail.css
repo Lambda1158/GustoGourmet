@@ -1,0 +1,7 @@
+.detail{
+    border-color: white;
+    border: 0.15rem solid #f3efe8ef;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+}

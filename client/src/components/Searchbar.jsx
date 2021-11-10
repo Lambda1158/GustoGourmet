@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { filterBySource, filterRecipeByDiets, orderByName, orderByPuntuacion } from "../actions";
-
+import "./css/searchbar.css"
 import { useDispatch } from "react-redux";
 export default function Searchbar( {paginado,setOrden}){
 
@@ -36,9 +36,9 @@ export default function Searchbar( {paginado,setOrden}){
 
 
     return (
-        <div>
-            <h1>La nav bar</h1>
-            <Link to="/">take me back to Landingpage</Link>
+        <div className="nav">
+            <h1>PI Food</h1>
+            <div>
             <select  onChange={(e)=>{handleSortByPuntuacion(e)}}>
                 <option value="mayor">Mas puntuados</option>
                 <option value="menor">Menos puntuados</option>
@@ -68,6 +68,9 @@ export default function Searchbar( {paginado,setOrden}){
                 <option type="checkbox" id="Dairy Free" value="dairy free">Dairy Free</option>
                 <option type="checkbox" id="lacto ovo vegetarian" value="lacto ovo vegetarian">lacto ovo vegetarian</option>
             </select>
+            </div>
+            <Link to="/"><h3>Back to Landingpage</h3></Link>
+            <Link to="/post"><h3>Crear Receta</h3></Link>
         </div>
         
     )

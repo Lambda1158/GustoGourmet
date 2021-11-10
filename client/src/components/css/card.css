@@ -1,38 +1,54 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
   }
-
+  img{
+    width: 150px;
+    height: 100px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
   .card{
-    padding: 1rem;
-    border: 1px solid #777;
-    border-radius: 0.25rem;
-    background: white;
+    
+    width: 100%;
+    display: block;
+    width: 25%;
+    height: 300px;
+    border: 0.15rem solid #f3efe8ef;
+    margin: 1rem;
+    border-radius: 2%;
     
   }
   .body{
-      font-size: .9rem;
-      color: black;
-  }
+    display: block;
+    justify-content: safe;
+    align-items: baseline;
+  } 
   
-  h2{
-      font-size: 1.5rem;
-      margin-bottom: .5rem;
-      color: black;
+ 
+  h4{
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: #e4e9e9;
+    font-weight: 400;
+    text-align: center;
   }
-  .footer{
-    margin-top: 1rem;
+  h2{
+    font-size: 1.3rem;
+    text-align: center;
+    color:white
   }
   .btn{
-      background-color: aqua;
+      background-color: rgb(199, 15, 168);
       color:  white;
       border:none;
       padding: .5em .75em;
       border-radius: .25em;
+     
   }
   .btn:hover, .btn:focus{
-      background-color: turquoise;
+      background-color: rgb(218, 24, 59);
   }
   .btn + .btn{
       margin-left: .50rem;
