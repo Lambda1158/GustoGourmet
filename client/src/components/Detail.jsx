@@ -8,7 +8,7 @@ const Detail= (props)=>{
     let id=props.match.params.id
     let flag=props.match.params.flag
     const dispatch=useDispatch()
-
+    var cargando=useSelector(state=> state.cargando)
     useEffect(()=>{
         dispatch(getDetail(id,flag))
         return()=>{
@@ -16,12 +16,13 @@ const Detail= (props)=>{
         }
     },[])
     const myRecipe= useSelector((state)=>state.detail)
-    console.log(myRecipe[0]?.analyzedInstructions)
     
-
-
-    return(
-        <div className="detail">
+    function contenido(){
+        if(cargando){
+            return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        }
+        return(
+            <div className="detail">
             {myRecipe[0]?
             <div>
                 <h1>{myRecipe[0].title}</h1>
@@ -39,6 +40,14 @@ const Detail= (props)=>{
             : <p>Loading ...</p>}
             <Link to="/home"><button className="btn">take me back</button></Link>
         </div>
+        )
+    }
+
+
+    return(
+        <>
+        {contenido()}
+        </>
     )
 }
 export default Detail

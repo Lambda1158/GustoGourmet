@@ -1,11 +1,13 @@
-import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS, GET_BY_ID, DELETE, RESET_RECIPE} from "../actions/index"
+import {FILTER_BY_DIETS, GET_RECIPES,FILTER_BY_SOURCE,ERROR,LOADING,
+    ORDER_BY_NAME,ORDER_BY_PUNTUACION,POST_RECIPE,GET_DIETS, GET_BY_ID, DELETE, RESET_RECIPE} from "../actions/index"
 
 const initialState={
     recipe:[],
     backupAllRecipes:[],
     diets:[],
     detail:[],
-    filterRecipe:[]
+    filterRecipe:[],
+    cargando:false
 
 }
 
@@ -16,7 +18,8 @@ export default function rootReducer(state=initialState,action){
             return {
                 ...state,
                 recipe:action.payload,
-                backupAllRecipes:action.payload
+                backupAllRecipes:action.payload,
+                cargando:false
             }
         case FILTER_BY_DIETS:
             
@@ -117,7 +120,8 @@ export default function rootReducer(state=initialState,action){
         case GET_BY_ID:
             return{
                 ...state,
-                detail:[action.payload]
+                detail:[action.payload],
+                cargando:false
             }
         case DELETE:
             var deleteRecipe=state.recipe.filter(e=>e.id!==Number(action.payload))
@@ -129,6 +133,17 @@ export default function rootReducer(state=initialState,action){
             return{
                 ...state,
                 detail:[]
+            }
+        case LOADING:
+            return{
+                ...state,
+                cargando:true
+            }
+        case ERROR:
+            return{
+                ...state,
+                error:action.payload,
+                cargando:false
             }
         default:
             return state

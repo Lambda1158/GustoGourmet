@@ -47,7 +47,7 @@
       border-radius: .25em;
      
   }
-  .btn:hover, .btn:focus{
+  .btn:hover{
       background-color: rgb(218, 24, 59);
   }
   .btn + .btn{

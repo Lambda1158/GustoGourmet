@@ -17,6 +17,7 @@ function validateInput(input){
     }else if(!input.healthScore){
         error.healthScore="Healthscore tiene q ser un numero"
     }
+
     return error
 }
 
@@ -36,9 +37,11 @@ export default function CreateRecipe(){
         healthScore:null,
         dishtext:"",
         dishTypes:[]
+
     })
     
     function handleChange(e){
+        
         setInput({
             ...input,
             [e.target.name]:e.target.value
@@ -123,6 +126,7 @@ export default function CreateRecipe(){
                 <div>
                     <label>Puntuacion</label>
                     <input
+                        min="0"
                         type="number"
                         value={input.puntuacion}
                         name="puntuacion"
@@ -133,6 +137,7 @@ export default function CreateRecipe(){
                 <div>
                     <label>healthScore</label>
                     <input
+                        min="0"
                         type="number"
                         value={input.healthScore}
                         name="healthScore"
@@ -194,7 +199,7 @@ export default function CreateRecipe(){
                         return <><p>{e}</p><button name="dishTypes" onClick={(btn)=>{pop(btn,e)}}>X</button></>
                     })}
                 </div>
-                {!input.name||!input.summary?<p>llene bien el forum</p>:<button className="btn" type="submit">POST!</button>}
+                {!input.name||!input.summary||!input.title||!input.puntuacion||!input.healthScore||!input.diet||!input.step?<p>llene bien el formulario</p>:<button className="btn" type="submit">POST!</button>}
                 
             </form>
         </div>

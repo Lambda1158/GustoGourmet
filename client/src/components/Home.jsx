@@ -13,6 +13,7 @@ export default function Home(){
     const [buscar,setBuscar]=useState("")
     const dispatch=useDispatch()
     var allRecipes=useSelector((state)=> state.recipe)
+    var cargando=useSelector(state=>state.cargando)
     
     const [currentPage,setCurrentPage]=useState(1)
     const [recipePerPage,setRecipePerPage]=useState(9)
@@ -39,6 +40,16 @@ export default function Home(){
         setBuscar("")
 
     }
+    function contenido(){
+      if(cargando){
+        return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      }
+      return (
+        currentRecipe?.map((receta)=>{
+          return <Card createdInBd={receta.createdInBd} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
+      })
+      )
+    }
    
     
     return (
@@ -63,9 +74,7 @@ export default function Home(){
           :<div className="nopagina">Single page</div>}
 
             <div className="grid">
-          {currentRecipe?.map((receta)=>{
-              return <Card createdInBd={receta.createdInBd} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
-          })}
+          {contenido()}
             </div>
           
         </div>

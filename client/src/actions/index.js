@@ -10,11 +10,16 @@ export const GET_DIETS="GET_DIETS"
 export const GET_BY_ID="GET_BY_ID"
 export const DELETE="DELETE"
 export const RESET_RECIPE="RESET_RECIPE"
+export const LOADING="LOADING"
+export const ERROR="ERROR"
 
 
  
 export function getRecipes(name){
     return function(dispatch) {
+        dispatch({
+            type:LOADING
+        })
         axios.get(`http://localhost:3000/api/recipe?name=${name}`)
         .then((recipe) => {
             
@@ -25,6 +30,10 @@ export function getRecipes(name){
         })
         .catch((error) => {
             console.log(error)
+            dispatch({
+                type : ERROR,
+                payload:error.message
+            })
         })
     }
 }
@@ -72,6 +81,7 @@ export function postRecipe(payload){
 
 export function getDiets(){
     return async function (dispatch){
+        
         var info = await axios("http://localhost:3000/api/types")
         return dispatch({
             type: GET_DIETS,
@@ -82,7 +92,9 @@ export function getDiets(){
 
 export function getDetail(id,flag){
     return async function(dispatch){
-        
+        dispatch({
+            type:LOADING
+        })
         var info =await axios(`http://localhost:3000/api/recipe/id/${id}/flag/${flag}`)
         
         return dispatch({
@@ -102,3 +114,5 @@ export function resetRecipeDetail(){
         type:RESET_RECIPE
     }
 }
+
+
