@@ -1,8 +1,5 @@
-.grid{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
+.home-background{
+  background-color: red;
 }
 .nopagina{
    margin-top: 10px;

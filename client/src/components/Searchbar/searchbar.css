@@ -1,3 +1,6 @@
+.search-background{
+    background-color: blueviolet;
+}
 .nav{
     margin-bottom: 20px;
     display: flex;

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { getDetail, resetRecipeDetail } from "../actions";
+import { getDetail, resetRecipeDetail } from "../../actions";
 import { useEffect } from "react";
-import "./css/detail.css"
+import "./detail.css"
+import { Spiner } from "../spiner";
 const Detail= (props)=>{
     let id=props.match.params.id
     let flag=props.match.params.flag
@@ -19,10 +20,10 @@ const Detail= (props)=>{
     
     function contenido(){
         if(cargando){
-            return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            return <Spiner/>
         }
         return(
-            <div className="detail">
+            <div className="detail-background">
             {myRecipe[0]?
             <div>
                 <h1>{myRecipe[0].title}</h1>

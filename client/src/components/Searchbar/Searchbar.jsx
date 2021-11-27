@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { filterBySource, filterRecipeByDiets, orderByName, orderByPuntuacion } from "../actions";
-import "./css/searchbar.css"
+import { filterBySource, filterRecipeByDiets, orderByName, orderByPuntuacion } from "../../actions";
+import "./searchbar.css"
 import { useDispatch } from "react-redux";
 export default function Searchbar( {paginado,setOrden}){
 
@@ -36,7 +36,7 @@ export default function Searchbar( {paginado,setOrden}){
 
 
     return (
-        <div className="nav">
+        <div className="search-background nav">
             <h1>PI Food</h1>
             <div>
             <select  onChange={(e)=>{handleSortByPuntuacion(e)}}>

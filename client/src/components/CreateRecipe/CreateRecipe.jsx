@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { Link,useHistory } from "react-router-dom";
-import { postRecipe } from "../actions";
+import { postRecipe } from "../../actions";
 import { useDispatch,useSelector } from "react-redux";
-import "./css/createrecipe.css"
+import "./createrecipe.css"
 
 function validateInput(input){
     var error={}

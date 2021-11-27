@@ -1,12 +1,12 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import {useDispatch,useSelector} from "react-redux"
-import { getRecipes } from "../actions";
-import { Link } from "react-router-dom";
-import Card from "./Card";
-import Paginado from "./Paginado";
-import Searchbar from "./Searchbar";
-import "./css/home.css"
+import { getRecipes } from "../../actions";
+import { Spiner } from "../spiner";
+import Card from "../Card/Card";
+import Paginado from "../Paginado/Paginado";
+import Searchbar from "../Searchbar/Searchbar";
+import "./home.css"
 
 export default function Home(){
     const [orden,setOrden]=useState("")
@@ -42,7 +42,7 @@ export default function Home(){
     }
     function contenido(){
       if(cargando){
-        return <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        return <Spiner/>
       }
       return (
         currentRecipe?.map((receta)=>{
@@ -53,7 +53,7 @@ export default function Home(){
    
     
     return (
-        <div>
+        <div className="home-background">
             <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
             <label className="label" htmlFor="title">Buscar por nombre </label>
             <div className="box">

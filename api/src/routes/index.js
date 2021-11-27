@@ -99,7 +99,27 @@ router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
     let id=req.params.id
     let flag=req.params.flag
     if(flag==0){
-        const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
+            try{
+
+                const reqApi= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`)
+                const myinfo={
+                    title:reqApi.data.title,
+                    name:reqApi.data.name,
+                    diets:reqApi.data.diets,
+                    steps:reqApi.data.steps,
+                    healthScore:reqApi.data.healthScore,
+                    summary:reqApi.data.summary,
+                    puntuacion:reqApi.data.spoonacularScore,
+                    dishTypes:reqApi.data.dishTypes,
+                    analyzedInstructions:reqApi.data.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step),
+                    image:reqApi.data.image
+                }
+                
+                res.send(myinfo)
+            }
+            catch(error){
+                res.statusCode(404).send({name:"lala",summary:"lala"})
+            }
         // let array= Object.entries(reqApi.data)
         // array=array.filter(e=>{
         //     if(e[0]==="title"||e[0]==="image"||e[0]==="dishTypes"||e[0]==="diets"||e[0]==="steps"||e[0]==="healthScore"||e[0]==="summary"||e[0]==="spoonacularScore"||e[0]==="analyzedInstructions")return e
@@ -107,20 +127,7 @@ router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
         // let obj=Object.fromEntries(array)
         // obj.analyzedInstructions=obj.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step)
         
-        const myinfo={
-            title:reqApi.data.title,
-            name:reqApi.data.name,
-            diets:reqApi.data.diets,
-            steps:reqApi.data.steps,
-            healthScore:reqApi.data.healthScore,
-            summary:reqApi.data.summary,
-            puntuacion:reqApi.data.spoonacularScore,
-            dishTypes:reqApi.data.dishTypes,
-            analyzedInstructions:reqApi.data.analyzedInstructions[0].steps.map(e=>"paso:"+e.number+" "+e.step),
-            image:reqApi.data.image
-        }
-
-        res.send(myinfo)
+        
 
     }else{
         let reqDb=await Recipes.findOne({
@@ -137,6 +144,7 @@ router.get("/recipe/id/:id/flag/:flag",async(req,res)=>{
         })
         res.json(reqDb)
     }
+
 
 })
 router.get("/types",async(req,res)=>{

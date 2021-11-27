@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux"
 
-import "./css/card.css"
-import { deleteRecipe } from "../actions";
+import "./card.css"
+import { deleteRecipe } from "../../actions";
 export default function Card({title,image,diets,puntuacion,id,createdInBd}){
     const dispatch=useDispatch()
     function handleDelete(e){
