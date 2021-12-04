@@ -2,9 +2,10 @@ const { Router } = require('express');
 const {Op} = require('sequelize')
 const axios = require('axios')
 const {Recipes, Diets} = require('../db');
+const {uploader} =require("../middleware/uploader")
 //const API_KEY="5463a2e6f3664850a5d61db26e539e6c"
 
-const API_KEY="4dc38c6d0f754ba4b183daa9c51d6162"
+ const {API_KEY}=process.env
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -152,11 +153,22 @@ router.get("/types",async(req,res)=>{
     res.json(db)
       
 })
-router.post("/recipe",async(req,res)=>{
-    let {name,summary,puntuacion,healthScore,image,step,diet,dishTypes,title}=req.body
-    diet=diet.map(e=>parseInt(e))
-    dishTypes=dishTypes.join(" ")
-    image? image : image="https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1"
+router.post("/recipe",uploader.single("image"),async(req,res)=>{
+    file=req.file
+    let path="http://localhost:3000/"+file.filename
+    let {name,summary,puntuacion,healthScore,step,diet,dishTypes,title}=req.body
+    if(diet.length>1){
+        diet=diet.split(",")
+        for(let i in diet){
+            diet[i]=parseInt(diet[i])
+        }
+    }else{
+        diet=parseInt(diet)
+    }
+    puntuacion=Number(puntuacion)
+    healthScore=Number(healthScore)
+
+    
     try{
         var [receta,created]= await Recipes.findOrCreate({
             where:{
@@ -164,12 +176,12 @@ router.post("/recipe",async(req,res)=>{
                 summary
             },
             defaults:{
-                puntuacion:parseInt(puntuacion),
-                healthScore:parseInt(healthScore),
+                puntuacion,
+                healthScore,
                 step,
-                image,
                 dishTypes,
-                title
+                title,
+                image:path
             }
         })
 

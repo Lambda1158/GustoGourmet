@@ -28,45 +28,19 @@ conn.sync({ force: true }).then(() => {
   server.listen(3000, () => {
     console.log('%s listening at 3000'); // eslint-disable-line no-console
      Diets.bulkCreate([
-      {
-       name:"Gluten Free"
-      },
-        {
-          name:"Ketogenic"
-        },
-        {
-          name:"Vegetarian"
-        },
-        {
-          name:"Lacto-Vegetarian"
-        },
-        {
-          name:"Ovo-Vegetarian"
-        },
-        {
-          name:"Vegan"
-        },
-        {
-          name:"Pescetarian"
-        },
-        {
-          name:"Paleo"
-        },
-        {
-          name:"Primal"
-        },
-        {
-          name:"Low-FODMAP"
-        },
-        {
-          name:"Whole30"
-        },
-        {
-          name: "Dairy Free"
-        },
-        {
-          name:"lacto ovo vegetarian"
-        }
+      {name:"Gluten Free"},
+      {name:"Ketogenic"},
+      {name:"Vegetarian"},
+      {name:"Lacto-Vegetarian"},
+      {name:"Ovo-Vegetarian"},
+      {name:"Vegan"},
+      {name:"Pescetarian"},
+      {name:"Paleo"},
+      {name:"Primal"},
+      {name:"Low-FODMAP"},
+      {name:"Whole30"},
+      {name: "Dairy Free"},
+      {name:"lacto ovo vegetarian"}
     ],{ignoreDuplicates:true}).then(e=>{
       console.log("dietas creadas")
       

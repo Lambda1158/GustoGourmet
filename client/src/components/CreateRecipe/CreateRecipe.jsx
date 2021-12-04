@@ -25,6 +25,7 @@ export default function CreateRecipe(){
     const dispatch =useDispatch()
     const history=useHistory()
     const [error,setError]=useState({})
+    const [file,setFile]=useState(null)
     const diets=useSelector(state=>state.diets)
     const [input,setInput]=useState({
         name:"",
@@ -33,7 +34,6 @@ export default function CreateRecipe(){
         puntuacion:null,
         step:"",
         diet:[],
-        image:"",
         healthScore:null,
         dishtext:"",
         dishTypes:[]
@@ -71,21 +71,25 @@ export default function CreateRecipe(){
     }
     function handleSubmit(e){
         e.preventDefault()
-        console.log(input)
-        
-        dispatch(postRecipe(input))
+        let testfb=new FormData()
+        for(let i in input){
+            testfb.append(`${input[i]}`,input[i])
+        }
+        testfb.append("file",file)
+        dispatch(postRecipe(testfb))
         alert("Recipe creada , anda a buscarla al home :D")
         history.push("/home")
     }
     function pop(btn,e){
-        console.log(btn.target.name)
         btn.preventDefault()
         setInput({
             ...input,
             [btn.target.name]: input[btn.target.name].filter(dish=>dish!==e)
         })
     }
-
+    function handleFile(e){
+        setFile(e.target.files[0])
+    }
 
     return(
         <div>
@@ -157,11 +161,10 @@ export default function CreateRecipe(){
                 <div>
                     <label>Image</label>
                     <input
-                        type="text"
-                        value={input.image}
+                        type="file"
                         name="image"
-                        onChange={e=>handleChange(e)}
-                        placeholder="url or empty"
+                        onChange={handleFile}
+                        multiple=""
                     />
                 </div>
                 <div>

@@ -69,7 +69,21 @@ export function orderByPuntuacion(payload){
 export function postRecipe(payload){
     return async function(dispatch){
         try{
-            await axios.post(`http://localhost:3000/api/recipe`, payload);
+            console.log(payload)
+            axios({
+                method: "post",
+                url: "http://localhost:3000/api/recipe",
+                data: payload,
+                headers: { "Content-Type": "multipart/form-data" },
+              }) .then(function (response) {
+                //handle success
+                console.log(response);
+              })
+              .catch(function (response) {
+                //handle error
+                console.log(response);
+              });
+            //await axios.post(`http://localhost:3000/api/recipe`, payload);
             return dispatch({
                 type: POST_RECIPE,
             })
