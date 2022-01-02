@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { Link,useHistory } from "react-router-dom";
-import { postRecipe } from "../../actions";
+import { getDiets, postRecipe } from "../../actions";
 import { useDispatch,useSelector } from "react-redux";
 import "./createrecipe.css"
+import { useEffect } from "react";
 
 function validateInput(input){
     var error={}
@@ -72,10 +73,17 @@ export default function CreateRecipe(){
     function handleSubmit(e){
         e.preventDefault()
         let testfb=new FormData()
-        for(let i in input){
-            testfb.append(`${input[i]}`,input[i])
-        }
-        testfb.append("file",file)
+        testfb.append("name",input.name)
+        testfb.append("title",input.title)
+        testfb.append("summary",input.summary)
+        testfb.append("puntuacion",input.puntuacion)
+        testfb.append("step",input.step)
+        testfb.append("diet",input.diet)
+        testfb.append("healthScore",input.healthScore)
+        testfb.append("dishtext",input.dishtext)
+        testfb.append("dishTypes",input.dishTypes)
+        testfb.append("image",file)
+        console.log(testfb)
         dispatch(postRecipe(testfb))
         alert("Recipe creada , anda a buscarla al home :D")
         history.push("/home")
@@ -90,7 +98,9 @@ export default function CreateRecipe(){
     function handleFile(e){
         setFile(e.target.files[0])
     }
-
+    useEffect(()=>{
+        dispatch(getDiets())
+    },[])
     return(
         <div>
             <Link to="/home"><button>Volver</button></Link>
@@ -164,10 +174,9 @@ export default function CreateRecipe(){
                         type="file"
                         name="image"
                         onChange={handleFile}
-                        multiple=""
                     />
                 </div>
-                <div>
+                {/* <div>
                     <label>Diets</label>
                     <select onChange={e=>handleCheck(e)}>
                     <option type="checkbox" id="vegan" value="6">Vegan</option>
@@ -188,7 +197,25 @@ export default function CreateRecipe(){
                         return <><p>{e}</p><button name="diet" onClick={(btn)=>{pop(btn,e)}}>X</button>
                         </>
                     })}
+                </div> */}
+                      <div className="tipoDeDietas">
+          <div>
+            <label>Diets:</label>
+            <div className="opciones">
+              {diets.map((e) => (
+                <div>
+                  <input
+                    type="checkbox"
+                    value={e}
+                    name={e}
+                    onChange={(e) => handleCheck(e)}
+                  />
+                  <label>{e}</label>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
                 <div>
                     <label>DishType</label>
                     <input

@@ -5,9 +5,9 @@ import "./landing.css"
 export default function LandingPage(){
     return (
         <div className="landing-background"> 
-            <h1 className="title">LANDING PAGE</h1>
-            
-            <Link to="/home"><button className="b">GO HOME</button> </Link>
+        
+            <h1 className="title">Welcome to a very unique Recipe App</h1>
+            <Link to="/home"><button className="b">Let's begin</button> </Link>
             
         </div>
     )

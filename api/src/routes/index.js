@@ -157,14 +157,6 @@ router.post("/recipe",uploader.single("image"),async(req,res)=>{
     file=req.file
     let path="http://localhost:3000/"+file.filename
     let {name,summary,puntuacion,healthScore,step,diet,dishTypes,title}=req.body
-    if(diet.length>1){
-        diet=diet.split(",")
-        for(let i in diet){
-            diet[i]=parseInt(diet[i])
-        }
-    }else{
-        diet=parseInt(diet)
-    }
     puntuacion=Number(puntuacion)
     healthScore=Number(healthScore)
 
@@ -187,7 +179,7 @@ router.post("/recipe",uploader.single("image"),async(req,res)=>{
 
         var dbdiet=await Diets.findAll({
             where:{
-                id:diet
+                name:diet
             }
         })
         receta.addDiets(dbdiet)

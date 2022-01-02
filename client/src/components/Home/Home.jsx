@@ -25,10 +25,10 @@ export default function Home(){
         setCurrentPage(pagNumber)
     }
 
-    // useEffect(()=>{
-    //     dispatch(getRecipes("milanesa"))
+    useEffect(()=>{
+        dispatch(getRecipes("milanesa"))
         
-    // },[])
+    },[])
     
     function handleCange(e){
         e.preventDefault()
@@ -55,10 +55,9 @@ export default function Home(){
     return (
         <div className="home-background">
             <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
-            <label className="label" htmlFor="title">Buscar por nombre </label>
             <div className="box">
             <input
-              className="input"
+              className="form-control me-2"
               type="text"
               id="receta"
               autoComplete="off"
@@ -66,7 +65,7 @@ export default function Home(){
               value={buscar}
               onChange={(e) => handleCange(e)}
             />
-          <button className="buscar" onClick={e=> handleClick(e)}>Search</button>
+          <button className="btn btn-outline-success" onClick={e=> handleClick(e)}>Search</button>
             </div>
           
           {allRecipes.length>9?

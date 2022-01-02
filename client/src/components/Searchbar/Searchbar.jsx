@@ -36,18 +36,18 @@ export default function Searchbar( {paginado,setOrden}){
 
 
     return (
-        <div className="search-background nav">
-            <h1>PI Food</h1>
+        <nav className=" navbar navbar-dark bg-dark">
+            <h3 className="title-home">Recipes App</h3>
             <div>
             <select  onChange={(e)=>{handleSortByPuntuacion(e)}}>
-                <option value="mayor">Mas puntuados</option>
-                <option value="menor">Menos puntuados</option>
+                <option  value="mayor">Mas puntuados</option>
+                <option  value="menor">Menos puntuados</option>
             </select>
             <select  onChange={(e)=>{handleSortByName(e)}}>
                 <option value="asc">Ascendente</option>
                 <option value="des">Descendente</option>
             </select>
-            <select name="byc" onChange={e=>handleFilterBySource(e)}>
+            <select name="byc" className="nav-item " onChange={e=>handleFilterBySource(e)}>
                 <option value="All">Todos</option>
                 <option value="api">Api</option>
                 <option value="db">Data base</option>
@@ -69,9 +69,9 @@ export default function Searchbar( {paginado,setOrden}){
                 <option type="checkbox" id="lacto ovo vegetarian" value="lacto ovo vegetarian">lacto ovo vegetarian</option>
             </select>
             </div>
-            <Link to="/"><h3>Back to Landingpage</h3></Link>
-            <Link to="/post"><h3>Crear Receta</h3></Link>
-        </div>
-        
+            <Link to="/"><h3 className="title-home">Back to Landingpage</h3></Link>
+            <Link to="/post"><h3 className="title-home">Crear Receta</h3></Link>
+    </nav>
+
     )
 }
