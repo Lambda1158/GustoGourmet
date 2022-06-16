@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { getDetail, resetRecipeDetail } from "../../actions";
 import { useEffect } from "react";
 import "./detail.css"
-import { Spiner } from "../spiner";
+import  Spinner  from "../Spiner/spinner";
 const Detail= (props)=>{
     let id=props.match.params.id
     let flag=props.match.params.flag
@@ -20,7 +20,7 @@ const Detail= (props)=>{
     
     function contenido(){
         if(cargando){
-            return <Spiner/>
+            return <Spinner/>
         }
         return(
             <div className="detail-background">

@@ -36,7 +36,7 @@ export default function Searchbar( {paginado,setOrden}){
 
 
     return (
-        <nav className=" navbar navbar-dark bg-dark">
+        <nav className="nav">
             <h3 className="title-home">Recipes App</h3>
             <div>
             <select  onChange={(e)=>{handleSortByPuntuacion(e)}}>
