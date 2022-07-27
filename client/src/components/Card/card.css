@@ -1,13 +1,27 @@
+<<<<<<< HEAD
   *{
       margin: 0;
       padding: 0;
       box-sizing: border-box;
   }
   img{
+=======
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+    justify-content: safe;
+    align-items: baseline;
+  }
+
+  img {
+>>>>>>> a8c90a67ca86a3f80181b416d75c90c429113df3
     width: 50px;
     height: 50px;
     object-fit: cover;
   }
+<<<<<<< HEAD
   .card{
     background-color: #FBAB7E;
     background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
@@ -28,27 +42,44 @@
   
  
   h4{
+=======
+
+  .card {
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    border: 0.15rem;
+    margin: 1rem;
+    border-radius: 2%;
+    width: 200px;
+    height: 200px;
+    background: white;
+    padding: .5em;
+    background-color: red;
+
+
+  }
+
+
+  h3 {
+>>>>>>> a8c90a67ca86a3f80181b416d75c90c429113df3
     font-size: 1rem;
     text-transform: capitalize;
     font-weight: 400;
     text-align: center;
   }
-  h2{
-    font-size: 1.3rem;
-    text-align: center;
-    
+
+  .btn {
+    background-color: rgb(230, 116, 16);
+    border: none;
+    padding: .5em .75em;
+    border-radius: .25em;
+
   }
-  .btn{
-      background-color: rgb(199, 15, 168);
-    
-      border:none;
-      padding: .5em .75em;
-      border-radius: .25em;
-     
+
+  .btn:hover {
+    background-color: rgb(242, 152, 17);
   }
-  .btn:hover{
-      background-color: rgb(218, 24, 59);
-  }
-  .btn + .btn{
-      margin-left: .50rem;
+
+  .btn+.btn {
+    margin-left: .50rem;
   }

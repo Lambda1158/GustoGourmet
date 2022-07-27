@@ -1,0 +1,35 @@
+.pies{
+    background-color:rgba(234, 190, 16, 0.667);
+    color: brown;
+    border: 5px solid rgb(216, 146, 25);
+    height: 15%;
+    margin-bottom: 0px;
+    width: 100%;
+    display:flex;
+    position: absolute;
+    justify-content: space-between;
+    left: 0;
+    bottom: 0;    
+
+}
+.pies>div{
+    
+}
+.footer-info{
+    border-left: 5px solid rgb(216, 146, 25) ;
+    border-right: 5px solid rgb(216, 146, 25) ;
+    width: 80%;
+}
+.footer-info>p{
+    font-size: 12px;
+    
+}
+.linkedin>:hover{
+   color: blue;
+}
+.icon-conteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}

@@ -1,34 +1,66 @@
-.home-background{
-  background-image: radial-gradient( circle 489px at 49.3% 46.6%,  rgba(255,214,126,1) 0%, rgba(253,200,0,1) 100.2% );
-  height: 10rem;
-}
-.nopagina{
-   margin-top: 10px;
-}
-.box{
-    margin-top: 20px;
-    margin-bottom: 20px;
+body {
+  background-image: url("https://wallpaperaccess.com/full/3086351.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 90%;
 }
 
+<<<<<<< HEAD
 .grid{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
  
+=======
+.nopagina {
+  margin-top: 10px;
+>>>>>>> a8c90a67ca86a3f80181b416d75c90c429113df3
 }
 
-.input{
-    
-    display:inline-block;
-    box-sizing: border-box;
-    border:none;
-    outline : none;
-    height: 30px;
-    width: 200px;
-    border-radius: 25px 0 0 25px;
-    padding: 0 25px;
+.box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 300px;
+  margin-left: 40%;
+
+}
+
+.home-background {}
+
+.grid {
+  position: absolute;
+  height: 700px;
+  width: 1400px;
+  margin-left: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
 
 }
 
 
+.input {
 
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  height: 30px;
+  width: 200px;
+  border-radius: 25px 0 0 25px;
+  padding: 0 25px;
+
+}
+
+.botonhome {
+  background-color: rgb(232, 154, 19);
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  height: 30px;
+  width: 80px;
+}

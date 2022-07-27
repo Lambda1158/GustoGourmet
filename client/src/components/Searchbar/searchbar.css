@@ -1,13 +1,15 @@
-.search-background{
-    background-color: blueviolet;
-}
 .nav{
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 80px;
+    height: 70px;
+    background-color: blueviolet;
+    border-bottom: 5px solid rgba(237, 9, 176, 0.79);
 }
 .title-home{
     color:white
+}
+body {
+
 }

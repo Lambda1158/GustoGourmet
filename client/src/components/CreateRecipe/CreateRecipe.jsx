@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Link,useHistory } from "react-router-dom";
-import { getDiets, postRecipe } from "../../actions";
+import { getDiets, postRecipe,getRecipes } from "../../actions";
 import { useDispatch,useSelector } from "react-redux";
 import "./createrecipe.css"
 import { useEffect } from "react";
@@ -86,6 +86,7 @@ export default function CreateRecipe(){
         console.log(testfb)
         dispatch(postRecipe(testfb))
         alert("Recipe creada , anda a buscarla al home :D")
+        dispatch(getRecipes(input.name))
         history.push("/home")
     }
     function pop(btn,e){
