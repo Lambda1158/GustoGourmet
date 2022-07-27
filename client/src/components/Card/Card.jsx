@@ -21,10 +21,10 @@ export default function Card({ title, image, diets, puntuacion, id, createdInBd 
                 <span >Puntuacion: {puntuacion} </span>
                 {diets ? diets.map((e) => {
                     return <p>{e}</p>
-                }) : <p>No Diets :P</p>}
+                }) : <p key={id}>No Diets :P</p>}
 
-                <Link className="link" to={`/detail/${id},${createdInBd ? 1 : 0}`}><button class="btn">More info</button></Link>
-                <button value={id} class="btn btn-outline" onClick={e => handleDelete(e)}>X</button>
+                <Link className="link" to={`/detail/${id},${createdInBd ? 1 : 0}`}><button className="btn">More info</button></Link>
+                <button value={id} className="btn btn-outline" onClick={e => handleDelete(e)}>X</button>
 
             </div>
         </div>

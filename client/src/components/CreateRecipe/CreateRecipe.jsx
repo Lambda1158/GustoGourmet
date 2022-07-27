@@ -1,112 +1,112 @@
-import React, {useState} from "react";
-import { Link,useHistory } from "react-router-dom";
-import { getDiets, postRecipe,getRecipes } from "../../actions";
-import { useDispatch,useSelector } from "react-redux";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { getDiets, postRecipe, getRecipes } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
 import "./createrecipe.css"
 import { useEffect } from "react";
 
-function validateInput(input){
-    var error={}
-    if (!input.name){
-        error.name="Se requiere un nombre"
-    }else if(!input.title){
-        error.title="Se requiere un titulo"
-    }else if(!input.summary){
-        error.summary="Este campo es obligatorio"
-    }else if(!input.puntuacion){
-        error.puntuacion="Puntuacion del 1 al 100"
-    }else if(!input.healthScore){
-        error.healthScore="Healthscore tiene q ser un numero"
+function validateInput(input) {
+    var error = {}
+    if (!input.name) {
+        error.name = "Se requiere un nombre"
+    } else if (!input.title) {
+        error.title = "Se requiere un titulo"
+    } else if (!input.summary) {
+        error.summary = "Este campo es obligatorio"
+    } else if (!input.puntuacion) {
+        error.puntuacion = "Puntuacion del 1 al 100"
+    } else if (!input.healthScore) {
+        error.healthScore = "Healthscore tiene q ser un numero"
     }
 
     return error
 }
 
-export default function CreateRecipe(){
-    const dispatch =useDispatch()
-    const history=useHistory()
-    const [error,setError]=useState({})
-    const [file,setFile]=useState(null)
-    const diets=useSelector(state=>state.diets)
-    const [input,setInput]=useState({
-        name:"",
-        title:"",
-        summary:"",
-        puntuacion:null,
-        step:"",
-        diet:[],
-        healthScore:null,
-        dishtext:"",
-        dishTypes:[]
+export default function CreateRecipe() {
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const [error, setError] = useState({})
+    const [file, setFile] = useState(null)
+    const diets = useSelector(state => state.diets)
+    const [input, setInput] = useState({
+        name: "",
+        title: "",
+        summary: "",
+        puntuacion: null,
+        step: "",
+        diet: [],
+        healthScore: null,
+        dishtext: "",
+        dishTypes: []
 
     })
-    
-    function handleChange(e){
-        
+
+    function handleChange(e) {
+
         setInput({
             ...input,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
         setError(validateInput({
             ...input,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         }))
     }
-    function handleCheck(e){
-            setInput({
-                ...input,
-                diet:[...input.diet,e.target.value]
-            })
-        
-    }
-    function handleDish(e){
-        e.preventDefault()
-        let aux=input.dishtext
+    function handleCheck(e) {
         setInput({
             ...input,
-            dishTypes:[...input.dishTypes,aux],
-            dishtext:""
+            diet: [...input.diet, e.target.value]
         })
-        
-        
+
     }
-    function handleSubmit(e){
+    function handleDish(e) {
         e.preventDefault()
-        let testfb=new FormData()
-        testfb.append("name",input.name)
-        testfb.append("title",input.title)
-        testfb.append("summary",input.summary)
-        testfb.append("puntuacion",input.puntuacion)
-        testfb.append("step",input.step)
-        testfb.append("diet",input.diet)
-        testfb.append("healthScore",input.healthScore)
-        testfb.append("dishtext",input.dishtext)
-        testfb.append("dishTypes",input.dishTypes)
-        testfb.append("image",file)
+        let aux = input.dishtext
+        setInput({
+            ...input,
+            dishTypes: [...input.dishTypes, aux],
+            dishtext: ""
+        })
+
+
+    }
+    function handleSubmit(e) {
+        e.preventDefault()
+        let testfb = new FormData()
+        testfb.append("name", input.name)
+        testfb.append("title", input.title)
+        testfb.append("summary", input.summary)
+        testfb.append("puntuacion", input.puntuacion)
+        testfb.append("step", input.step)
+        testfb.append("diet", input.diet)
+        testfb.append("healthScore", input.healthScore)
+        testfb.append("dishtext", input.dishtext)
+        testfb.append("dishTypes", input.dishTypes)
+        testfb.append("image", file)
         console.log(testfb)
         dispatch(postRecipe(testfb))
         alert("Recipe creada , anda a buscarla al home :D")
         dispatch(getRecipes(input.name))
         history.push("/home")
     }
-    function pop(btn,e){
+    function pop(btn, e) {
         btn.preventDefault()
         setInput({
             ...input,
-            [btn.target.name]: input[btn.target.name].filter(dish=>dish!==e)
+            [btn.target.name]: input[btn.target.name].filter(dish => dish !== e)
         })
     }
-    function handleFile(e){
+    function handleFile(e) {
         setFile(e.target.files[0])
     }
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getDiets())
-    },[])
-    return(
+    }, [])
+    return (
         <div>
             <Link to="/home"><button>Volver</button></Link>
             <h1>Create your own unique recipe</h1>
-            <form onSubmit={e=>handleSubmit(e)}>
+            <form onSubmit={e => handleSubmit(e)}>
                 <div>
                     <label>Name</label>
                     <input
@@ -114,9 +114,9 @@ export default function CreateRecipe(){
                         type="text"
                         value={input.name}
                         name="name"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
-                    {error.name&&(<p className="error">{error.name}</p>)}
+                    {error.name && (<p className="error">{error.name}</p>)}
                 </div>
                 <div>
                     <label>Title</label>
@@ -124,9 +124,9 @@ export default function CreateRecipe(){
                         type="text"
                         value={input.title}
                         name="title"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
-                    {error.title &&(<p className="error">{error.title}</p>)}
+                    {error.title && (<p className="error">{error.title}</p>)}
                 </div>
                 <div>
                     <label>Summary</label>
@@ -134,9 +134,9 @@ export default function CreateRecipe(){
                         type="text"
                         value={input.summary}
                         name="summary"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
-                    {error.summary &&(<p className="error">{error.summary}</p>)}
+                    {error.summary && (<p className="error">{error.summary}</p>)}
                 </div>
                 <div>
                     <label>Puntuacion</label>
@@ -145,7 +145,7 @@ export default function CreateRecipe(){
                         type="number"
                         value={input.puntuacion}
                         name="puntuacion"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
                     {error.puntuacion && (<p className="error">{error.puntuacion}</p>)}
                 </div>
@@ -156,7 +156,7 @@ export default function CreateRecipe(){
                         type="number"
                         value={input.healthScore}
                         name="healthScore"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
                     {error.healthScore && (<p className="error">{error.healthScore}</p>)}
                 </div>
@@ -166,7 +166,7 @@ export default function CreateRecipe(){
                         type="text"
                         value={input.step}
                         name="step"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
                 </div>
                 <div>
@@ -199,39 +199,40 @@ export default function CreateRecipe(){
                         </>
                     })}
                 </div> */}
-                      <div className="tipoDeDietas">
-          <div>
-            <label>Diets:</label>
-            <div className="opciones">
-              {diets.map((e) => (
-                <div>
-                  <input
-                    type="checkbox"
-                    value={e}
-                    name={e}
-                    onChange={(e) => handleCheck(e)}
-                  />
-                  <label>{e}</label>
+                <div className="tipoDeDietas">
+                    <div>
+                        <label>Diets:</label>
+                        <div className="opciones">
+                            {diets.map((e) => (
+                                <div>
+                                    <input
+                                        key={e}
+                                        type="checkbox"
+                                        value={e}
+                                        name={e}
+                                        onChange={(e) => handleCheck(e)}
+                                    />
+                                    <label>{e}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
                 <div>
                     <label>DishType</label>
                     <input
                         type="text"
                         value={input.dishtext}
                         name="dishtext"
-                        onChange={e=>handleChange(e)}
+                        onChange={e => handleChange(e)}
                     />
-                    <button onClick={e=>handleDish(e)} >Push dish</button>
-                    {input.dishTypes.map(e=>{
-                        return <><p>{e}</p><button name="dishTypes" onClick={(btn)=>{pop(btn,e)}}>X</button></>
+                    <button onClick={e => handleDish(e)} >Push dish</button>
+                    {input.dishTypes.map(e => {
+                        return <><p>{e}</p><button name="dishTypes" onClick={(btn) => { pop(btn, e) }}>X</button></>
                     })}
                 </div>
-                {!input.name||!input.summary||!input.title||!input.puntuacion||!input.healthScore||!input.diet||!input.step?<p>llene bien el formulario</p>:<button className="btn" type="submit">POST!</button>}
-                
+                {!input.name || !input.summary || !input.title || !input.puntuacion || !input.healthScore || !input.diet || !input.step ? <p>llene bien el formulario</p> : <button className="btn" type="submit">POST!</button>}
+
             </form>
         </div>
     )
