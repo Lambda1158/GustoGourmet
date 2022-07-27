@@ -7,16 +7,16 @@ body {
   height: 90%;
 }
 
-<<<<<<< HEAD
-.grid{
+
+.grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
- 
-=======
+}
+
 .nopagina {
   margin-top: 10px;
->>>>>>> a8c90a67ca86a3f80181b416d75c90c429113df3
+
 }
 
 .box {
