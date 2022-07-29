@@ -42,13 +42,12 @@ export default function Home() {
 
   }
   function contenido() {
-    let c = 0
     if (cargando) {
       return <Spinner />
     }
     return (
       currentRecipe?.map((receta) => {
-        return <Card createdInBd={receta.createdInBd} key={++c} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
+        return <Card createdInBd={receta.createdInBd} id={receta.id} title={receta.title} image={receta.image} diets={receta.diets} puntuacion={receta.puntuacion} />
       })
     )
   }

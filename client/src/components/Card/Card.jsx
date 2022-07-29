@@ -16,8 +16,8 @@ export default function Card({ title, image, diets, puntuacion, id, createdInBd 
     return (
         <div className="card">
             <div className="body">
-                <img className="img" src={image} alt="img not found" />
-                <h3 className="header" >{title}</h3>
+                <div className="t2"><img className="img" src={image} alt="img not found" /></div>
+                <div className="t1"><h3 className="card_title" >{title}</h3></div>
                 <span >Puntuacion: {puntuacion} </span>
                 {diets ? diets.map((e) => {
                     return <p>{e}</p>
