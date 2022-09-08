@@ -48,7 +48,8 @@
     border: none;
     padding: .5em .75em;
     border-radius: .25em;
-
+    position: absolute;
+    margin-left: 30%;
   }
 
   .btn:hover {
@@ -57,4 +58,12 @@
 
   .t2:hover {
     border-color: black;
+  }
+
+  .dietas {
+    position: center;
+  }
+
+  .btn+.b1 {
+    margin-left: 50px;
   }
