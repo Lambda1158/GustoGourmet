@@ -34,10 +34,12 @@ body {
   height: 700px;
   width: 1400px;
   margin-left: 20%;
+  margin-top: 1.2%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 10px;
+
 
 }
 

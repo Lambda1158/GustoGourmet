@@ -68,11 +68,7 @@ export default function Home() {
         />
         <button className="botonhome" onClick={e => handleClick(e)}>Search</button>
       </div>
-
-      {allRecipes.length > 9 ?
-        <Paginado recipePerPage={recipePerPage} allRecipes={allRecipes.length} paginado={paginado} />
-        : <div className="nopagina">Single page</div>}
-
+      <Paginado recipePerPage={recipePerPage} allRecipes={allRecipes.length} paginado={paginado} />
       <div className="grid">
         {contenido()}
       </div>
