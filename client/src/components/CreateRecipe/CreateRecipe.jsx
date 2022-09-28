@@ -103,7 +103,7 @@ export default function CreateRecipe() {
         dispatch(getDiets())
     }, [])
     return (
-        <div>
+        <div className="form-principal">
             <Link to="/home"><button>Volver</button></Link>
             <h1>Create your own unique recipe</h1>
             <form onSubmit={e => handleSubmit(e)}>

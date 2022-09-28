@@ -1,6 +1,16 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+.form-principal {
+    border: 3px solid black;
+    margin-left: 10%;
+    margin-top: 3%;
+    width: 700px;
+    background-color: rgb(223, 152, 22);
+}
+
+input {
+    border-radius: 25px;
+
+}
+
+input:hover {
+    background-color: rgb(235, 198, 130);
 }
