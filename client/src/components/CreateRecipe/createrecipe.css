@@ -1,7 +1,6 @@
 .form-principal {
     border: 3px solid black;
     margin-left: 10%;
-    margin-top: 3%;
     width: 700px;
     background-color: rgb(223, 152, 22);
 }
@@ -13,4 +12,25 @@ input {
 
 input:hover {
     background-color: rgb(235, 198, 130);
+}
+
+label {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+
+}
+
+.create-recipe {
+    width: auto;
+    text-align: center;
+}
+
+.opciones {
+    display: flex;
+    height: 200px;
+    width: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: space-around;
 }

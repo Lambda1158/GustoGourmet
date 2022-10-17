@@ -107,8 +107,9 @@ export default function CreateRecipe() {
             <Link to="/home"><button>Volver</button></Link>
             <h1>Create your own unique recipe</h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <div>
+                <div className="create-recipe">
                     <label>Name</label>
+                    <br></br>
                     <input
                         id="1"
                         type="text"
@@ -118,8 +119,9 @@ export default function CreateRecipe() {
                     />
                     {error.name && (<p className="error">{error.name}</p>)}
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>Title</label>
+                    <br></br>
                     <input
                         type="text"
                         value={input.title}
@@ -128,8 +130,9 @@ export default function CreateRecipe() {
                     />
                     {error.title && (<p className="error">{error.title}</p>)}
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>Summary</label>
+                    <br></br>
                     <input
                         type="text"
                         value={input.summary}
@@ -138,8 +141,9 @@ export default function CreateRecipe() {
                     />
                     {error.summary && (<p className="error">{error.summary}</p>)}
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>Puntuacion</label>
+                    <br></br>
                     <input
                         min="0"
                         type="number"
@@ -149,8 +153,9 @@ export default function CreateRecipe() {
                     />
                     {error.puntuacion && (<p className="error">{error.puntuacion}</p>)}
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>healthScore</label>
+                    <br></br>
                     <input
                         min="0"
                         type="number"
@@ -160,8 +165,9 @@ export default function CreateRecipe() {
                     />
                     {error.healthScore && (<p className="error">{error.healthScore}</p>)}
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>Paso a Paso</label>
+                    <br></br>
                     <input
                         type="text"
                         value={input.step}
@@ -169,7 +175,7 @@ export default function CreateRecipe() {
                         onChange={e => handleChange(e)}
                     />
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>Image</label>
                     <input
                         type="file"
@@ -200,11 +206,11 @@ export default function CreateRecipe() {
                     })}
                 </div> */}
                 <div className="tipoDeDietas">
-                    <div>
+                    <div className="create-recipe">
                         <label>Diets:</label>
                         <div className="opciones">
                             {diets.map((e) => (
-                                <div>
+                                <div className="opciones-items">
                                     <input
                                         key={e}
                                         type="checkbox"
@@ -218,8 +224,9 @@ export default function CreateRecipe() {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="create-recipe">
                     <label>DishType</label>
+                    <br></br>
                     <input
                         type="text"
                         value={input.dishtext}
