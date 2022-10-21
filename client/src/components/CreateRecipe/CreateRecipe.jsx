@@ -4,6 +4,7 @@ import { getDiets, postRecipe, getRecipes } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import "./createrecipe.css"
 import { useEffect } from "react";
+import Row from "./Row/Row";
 
 function validateInput(input) {
     var error = {}
@@ -37,11 +38,11 @@ export default function CreateRecipe() {
         diet: [],
         healthScore: null,
         dishtext: "",
-        dishTypes: []
+        dishTypes: [],
 
     })
 
-    function handleChange(e) {
+    const handleChange = (e) => {
 
         setInput({
             ...input,
@@ -102,79 +103,18 @@ export default function CreateRecipe() {
     useEffect(() => {
         dispatch(getDiets())
     }, [])
+    console.log(input)
     return (
         <div className="form-principal">
             <Link to="/home"><button>Volver</button></Link>
             <h1>Create your own unique recipe</h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <div className="create-recipe">
-                    <label>Name</label>
-                    <br></br>
-                    <input
-                        id="1"
-                        type="text"
-                        value={input.name}
-                        name="name"
-                        onChange={e => handleChange(e)}
-                    />
-                    {error.name && (<p className="error">{error.name}</p>)}
-                </div>
-                <div className="create-recipe">
-                    <label>Title</label>
-                    <br></br>
-                    <input
-                        type="text"
-                        value={input.title}
-                        name="title"
-                        onChange={e => handleChange(e)}
-                    />
-                    {error.title && (<p className="error">{error.title}</p>)}
-                </div>
-                <div className="create-recipe">
-                    <label>Summary</label>
-                    <br></br>
-                    <input
-                        type="text"
-                        value={input.summary}
-                        name="summary"
-                        onChange={e => handleChange(e)}
-                    />
-                    {error.summary && (<p className="error">{error.summary}</p>)}
-                </div>
-                <div className="create-recipe">
-                    <label>Puntuacion</label>
-                    <br></br>
-                    <input
-                        min="0"
-                        type="number"
-                        value={input.puntuacion}
-                        name="puntuacion"
-                        onChange={e => handleChange(e)}
-                    />
-                    {error.puntuacion && (<p className="error">{error.puntuacion}</p>)}
-                </div>
-                <div className="create-recipe">
-                    <label>healthScore</label>
-                    <br></br>
-                    <input
-                        min="0"
-                        type="number"
-                        value={input.healthScore}
-                        name="healthScore"
-                        onChange={e => handleChange(e)}
-                    />
-                    {error.healthScore && (<p className="error">{error.healthScore}</p>)}
-                </div>
-                <div className="create-recipe">
-                    <label>Paso a Paso</label>
-                    <br></br>
-                    <input
-                        type="text"
-                        value={input.step}
-                        name="step"
-                        onChange={e => handleChange(e)}
-                    />
-                </div>
+                <Row onChange={handleChange} value={input.name} name={"Name"} />
+                <Row onChange={handleChange} value={input.title} name={"Title"} />
+                <Row onChange={handleChange} value={input.summary} name={"Summary"} />
+                <Row onChange={handleChange} value={input.puntuacion} name={"Puntuacion"} />
+                <Row onChange={handleChange} value={input.healthScore} name={"healthScore"} />
+                <Row onChange={handleChange} value={input.step} name={"Step"} />
                 <div className="create-recipe">
                     <label>Image</label>
                     <input
@@ -183,28 +123,6 @@ export default function CreateRecipe() {
                         onChange={handleFile}
                     />
                 </div>
-                {/* <div>
-                    <label>Diets</label>
-                    <select onChange={e=>handleCheck(e)}>
-                    <option type="checkbox" id="vegan" value="6">Vegan</option>
-                    <option type="checkbox" id="vegetarian" value="3" >Vegetarian</option>
-                    <option type="checkbox" id="Gluten Free" value="1" >Gluten Free</option>
-                    <option type="checkbox" id="Ketogenic" value="2">Ketogenic</option>
-                    <option type="checkbox" id="Lacto-Vegetarian" value="4">Lacto-Vegetarian</option>
-                    <option type="checkbox" id="Ovo-Vegetarian" value="5" >Ovo-Vegetarian</option>
-                    <option type="checkbox" id="pescatarian" value="7">Pescatarian</option>
-                    <option type="checkbox" id="Paleo" value="8" >Paleo</option>
-                    <option type="checkbox" id="Primal" value="9" >Primal</option>
-                    <option type="checkbox" id="Low-FODMAP" value="10" >Low-FODMAP</option>
-                    <option type="checkbox" id="Whole30" value="11">Whole30</option>
-                    <option type="checkbox" id="Dairy Free" value="12">Dairy Free</option>
-                    <option type="checkbox" id="lacto ovo vegetarian" value="13">lacto ovo vegetarian</option>
-                    </select>
-                    {input.diet.map(e=>{
-                        return <><p>{e}</p><button name="diet" onClick={(btn)=>{pop(btn,e)}}>X</button>
-                        </>
-                    })}
-                </div> */}
                 <div className="tipoDeDietas">
                     <div className="create-recipe">
                         <label>Diets:</label>
@@ -239,7 +157,6 @@ export default function CreateRecipe() {
                     })}
                 </div>
                 {!input.name || !input.summary || !input.title || !input.puntuacion || !input.healthScore || !input.diet || !input.step ? <p>llene bien el formulario</p> : <button className="btn" type="submit">POST!</button>}
-
             </form>
         </div>
     )
