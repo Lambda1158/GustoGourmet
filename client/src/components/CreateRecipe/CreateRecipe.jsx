@@ -109,7 +109,7 @@ export default function CreateRecipe() {
             <Link to="/home"><button>Volver</button></Link>
             <h1>Create your own unique recipe</h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <Row onChange={handleChange} value={input.name} name={"Name"} />
+                <Row onChange={handleChange} value={input.name} name={"Name"} mensage="" />
                 <Row onChange={handleChange} value={input.title} name={"Title"} />
                 <Row onChange={handleChange} value={input.summary} name={"Summary"} />
                 <Row onChange={handleChange} value={input.puntuacion} name={"Puntuacion"} />
