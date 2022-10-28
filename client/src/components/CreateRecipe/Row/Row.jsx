@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../CreateRecipe/createrecipe.css"
+import "../Row/Row.css"
 export default function Row(props) {
     const [value, setValue] = useState("")
     const change = e => {
@@ -18,7 +18,7 @@ export default function Row(props) {
                 name={props.name === "healthScore" ? "healthScore" : props.name.toLowerCase()}
                 onChange={e => change(e)}
             />
-            {value ? <p>{`${props.name} valido`}</p> : <p>{`${props.name} no valido`}</p>}
+            {value ? <p className="corret">{`${props.name} valido`}</p> : <p className="incorrect">{`${props.name} no valido`}</p>}
         </div>
     )
 }

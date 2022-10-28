@@ -21,11 +21,6 @@ label {
 
 }
 
-.create-recipe {
-    width: auto;
-    text-align: center;
-}
-
 .opciones {
     display: flex;
     height: 200px;
