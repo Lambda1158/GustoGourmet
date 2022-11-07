@@ -18,7 +18,7 @@ export default function Row(props) {
                 name={props.name === "healthScore" ? "healthScore" : props.name.toLowerCase()}
                 onChange={e => change(e)}
             />
-            {value ? <p className="corret">{`${props.name} valido`}</p> : <p className="incorrect">{`${props.name} no valido`}</p>}
+            {value ? <span className="corret">{`${props.name} valido`}</span> : <span className="incorrect">{`${props.name} no valido`}</span>}
         </div>
     )
 }
