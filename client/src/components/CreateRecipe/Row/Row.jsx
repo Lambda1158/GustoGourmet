@@ -7,6 +7,7 @@ export default function Row(props) {
         setValue(e.target.value)
         props.onChange(e)
     }
+    console.log(props)
     return (
         <div className="create-recipe">
             <label>{props.name}</label>
