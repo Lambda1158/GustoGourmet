@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getDiets, postRecipe, getRecipes } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import "./createrecipe.css"
@@ -25,7 +25,7 @@ function validateInput(input) {
 
 export default function CreateRecipe() {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const history = useNavigate()
     const [error, setError] = useState({})
     const [file, setFile] = useState(null)
     const diets = useSelector(state => state.diets)
