@@ -86,8 +86,7 @@ export default function CreateRecipe() {
   }
   useEffect(() => {
     dispatch(getDiets());
-  }, []);
-  console.log(input);
+  }, [dispatch]);
   return (
     <div className="form-principal">
       <Link to="/home">
