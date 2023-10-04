@@ -1,15 +1,35 @@
-.nav{
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 70px;
-    background-color: blueviolet;
-    border-bottom: 5px solid rgba(237, 9, 176, 0.79);
-}
-.title-home{
-    color:white
-}
-body {
-
-}
+.nav {
+    background-color: #333; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 15px; /* Espaciado interior */
+    display: flex; /* Contenedor de elementos flexibles */
+    justify-content: space-around; /* Distribución de elementos a lo largo del eje principal */
+    align-items: center; /* Alineación vertical en el centro */
+    height: 90px;
+  }
+  
+  .title-home {
+    margin: 0; /* Elimina el margen predeterminado */
+  }
+  
+  /* Estilos para los select y su contenedor */
+  select {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 3px solid #666;
+  }
+  
+  /* Estilo para los enlaces (Links) */
+  .nav h3 {
+    text-decoration: none;
+    color: rgb(236, 213, 108);
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: bolder;
+  }
+  
+  /* Estilo para los enlaces al pasar el mouse */
+  .nav a:hover {
+    text-decoration: underline; /* Subrayar en hover */
+  }

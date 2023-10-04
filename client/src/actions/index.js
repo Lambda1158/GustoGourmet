@@ -1,5 +1,4 @@
 import axios from "axios"
- 
 export const GET_RECIPES="GET_RECIPES" 
 export const FILTER_BY_DIETS="FILTER_BY_DIETS"
 export const FILTER_BY_SOURCE="FILTER_BY_SOURCE"

@@ -1,10 +1,9 @@
 import './App.css';
-import {Router, Routes, Route} from "react-router-dom"
+import { Routes, Route} from "react-router-dom"
 import LandingPage from './components/LandingPage/LandingPage.jsx';
 import Home from './components/Home/Home.jsx';
 import CreateRecipe from "./components/CreateRecipe/CreateRecipe"
 import Detail from './components/Detail/Detail.jsx';
-import Footer from './components/Footer/Footer';
 function App() {
   return (
     <Routes>
