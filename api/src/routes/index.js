@@ -85,7 +85,6 @@ router.get("/recipe", async (req, res, next) => {
                 diets: element.diets.map(el => el),
                 healthScore: element.healthScore,
                 dishTypes: element.dishTypes.map(el => el),
-                puntuacion: element.spoonacularScore || 10,
 
             }
         })

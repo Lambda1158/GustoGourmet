@@ -8,9 +8,10 @@ export default function Card({
   title,
   image,
   diets,
-  puntuacion,
+  healthScore,
   id,
   createdInBd,
+  dishTypes,
 }) {
   const dispatch = useDispatch();
   function handleDelete(e) {
@@ -24,7 +25,7 @@ export default function Card({
       <img className="img" src={image} alt="img not found" />
       <div className="card-content">
         <h3>{title}</h3>
-        <p className="relleno-card">Puntuacion: {puntuacion} </p>
+        <p className="relleno-card">Puntuacion: {healthScore} </p>
         {diets ? (
           diets.map((e, index) => {
             return (
@@ -36,6 +37,19 @@ export default function Card({
         ) : (
           <p className="relleno-card" key={id}>
             No Diets :P
+          </p>
+        )}
+        {dishTypes ? (
+          dishTypes.map((e, index) => {
+            return (
+              <p key={index} className="relleno-card">
+                {e}
+              </p>
+            );
+          })
+        ) : (
+          <p className="relleno-card" key={id}>
+            No dishess :P
           </p>
         )}
 

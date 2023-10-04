@@ -7,8 +7,12 @@ import {
   orderByPuntuacion,
 } from "../../actions";
 import "./searchbar.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getDiets } from "../../actions";
+
 export default function Searchbar({ paginado, setOrden }) {
+  const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
   function handleFilterRecipe(e) {
     dispatch(filterRecipeByDiets(e.target.value));
@@ -30,7 +34,9 @@ export default function Searchbar({ paginado, setOrden }) {
     paginado(1);
     setOrden(`Orden ${e.target.value}`);
   }
-
+  useEffect(() => {
+    dispatch(getDiets());
+  }, [dispatch]);
   return (
     <nav className="nav">
       <Link to="/">
@@ -59,6 +65,7 @@ export default function Searchbar({ paginado, setOrden }) {
           onChange={(e) => handleFilterBySource(e)}
         >
           <option value="All">Todos</option>
+
           <option value="api">Api</option>
           <option value="db">Data base</option>
         </select>
@@ -66,53 +73,18 @@ export default function Searchbar({ paginado, setOrden }) {
           <option type="checkbox" id="All" value="All">
             All
           </option>
-          <option type="checkbox" id="vegan" value="vegan">
-            Vegan
-          </option>
-          <option type="checkbox" id="vegetarian" value="vegetarian">
-            Vegetarian
-          </option>
-          <option type="checkbox" id="Gluten Free" value="gluten free">
-            Gluten Free
-          </option>
-          <option type="checkbox" id="Ketogenic" value="ketogenic">
-            Ketogenic
-          </option>
-          <option
-            type="checkbox"
-            id="Lacto-Vegetarian"
-            value="lacto-vegetarian"
-          >
-            Lacto-Vegetarian
-          </option>
-          <option type="checkbox" id="Ovo-Vegetarian" value="ovo">
-            Ovo-Vegetarian
-          </option>
-          <option type="checkbox" id="pescatarian" value="pescatarian">
-            Pescatarian
-          </option>
-          <option type="checkbox" id="Paleo" value="paleo">
-            Paleo
-          </option>
-          <option type="checkbox" id="Primal" value="primal">
-            Primal
-          </option>
-          <option type="checkbox" id="Low-FODMAP" value="low-FODMAP">
-            Low-FODMAP
-          </option>
-          <option type="checkbox" id="Whole30" value="whole30">
-            Whole30
-          </option>
-          <option type="checkbox" id="Dairy Free" value="dairy free">
-            Dairy Free
-          </option>
-          <option
-            type="checkbox"
-            id="lacto ovo vegetarian"
-            value="lacto ovo vegetarian"
-          >
-            lacto ovo vegetarian
-          </option>
+          {diets.map((e, index) => {
+            return (
+              <option
+                type="checkbox"
+                id={e}
+                value={e.toLowerCase()}
+                key={index}
+              >
+                {e}
+              </option>
+            );
+          })}
         </select>
       </div>
 

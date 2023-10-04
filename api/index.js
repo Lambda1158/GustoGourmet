@@ -34,11 +34,11 @@ conn.sync({ force: true }).then(() => {
       {name:"Lacto-Vegetarian"},
       {name:"Ovo-Vegetarian"},
       {name:"Vegan"},
-      {name:"Pescetarian"},
-      {name:"Paleo"},
+      {name:"Pescatarian"},
+      {name:"Paleolithic"},
       {name:"Primal"},
       {name:"Low-FODMAP"},
-      {name:"Whole30"},
+      {name:"Whole 30"},
       {name: "Dairy Free"},
       {name:"lacto ovo vegetarian"}
     ],{ignoreDuplicates:true}).then(e=>{
@@ -53,7 +53,7 @@ conn.sync({ force: true }).then(() => {
       title:"Milanesa a la Napolitana",
       summary:"a la napo con salsa y queso",
       puntuacion:10,
-      healthScore:6,
+      healthScore:8,
       image:"https://i.ytimg.com/vi/l1wjqM16g7I/maxresdefault.jpg"
     });
     var pepe1 =  Recipes.create({
@@ -70,7 +70,7 @@ conn.sync({ force: true }).then(() => {
       title:"Milanesa de Pollo",
       summary:"de pollo xD",
       puntuacion:8,
-      healthScore:6,
+      healthScore:2,
       image:"https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2019/08/como-cocinar-milanesas-de-pollo-sin-aceite.jpg"
      
     });

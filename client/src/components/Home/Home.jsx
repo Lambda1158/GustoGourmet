@@ -52,12 +52,13 @@ export default function Home() {
           title={receta.title}
           image={receta.image}
           diets={receta.diets}
-          puntuacion={receta.puntuacion}
+          healthScore={receta.healthScore}
+          dishTypes={receta.dishTypes}
         />
       );
     });
   }
-
+  console.log(allRecipes);
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
