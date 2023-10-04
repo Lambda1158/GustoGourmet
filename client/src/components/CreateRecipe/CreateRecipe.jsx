@@ -9,6 +9,7 @@ export default function CreateRecipe() {
   const dispatch = useDispatch();
   const history = useNavigate();
   const [file, setFile] = useState(null);
+  const [imageURL, setImageURL] = useState("");
   const diets = useSelector((state) => state.diets);
   const [input, setInput] = useState({
     name: "",
@@ -80,6 +81,8 @@ export default function CreateRecipe() {
   }
   function handleFile(e) {
     setFile(e.target.files[0]);
+    const imageURL = URL.createObjectURL(e.target.files[0]);
+    setImageURL(imageURL);
   }
   useEffect(() => {
     dispatch(getDiets());
@@ -92,25 +95,34 @@ export default function CreateRecipe() {
       </Link>
       <h1>Create your own unique recipe</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
-        {formfield.map((e, index) => {
-          return (
-            <div key={index}>
-              <label>{e.label}</label>
-              <input
-                onChange={handleChange}
-                value={input[e.name]}
-                name={e.name}
-                type={e.type}
-                key={index}
-                required
-                {...(e.type === "number" ? { min: 0, max: 100 } : {})}
-              />
-            </div>
-          );
-        })}
-        <div className="create-recipe">
-          <label>Image</label>
-          <input type="file" name="image" onChange={handleFile} />
+        <div className="c2">
+          <div className="contenedor-inputs">
+            {formfield.map((e, index) => {
+              return (
+                <div key={index}>
+                  <label>{e.label}</label>
+                  <input
+                    onChange={handleChange}
+                    value={input[e.name]}
+                    name={e.name}
+                    type={e.type}
+                    key={index}
+                    required
+                    {...(e.type === "number" ? { min: 0, max: 100 } : {})}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="contenedor-imagen">
+            <label>Imagen</label>
+            <input type="file" name="image" onChange={handleFile} />
+            {imageURL && (
+              <div>
+                <img src={imageURL} alt="Previsualización" width="200" />
+              </div>
+            )}
+          </div>
         </div>
         <div className="tipoDeDietas">
           <div className="create-recipe">
