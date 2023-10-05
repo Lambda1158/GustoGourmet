@@ -155,7 +155,6 @@ router.post("/recipe", uploader.single("image"), async (req, res) => {
     req.body;
   puntuacion = Number(puntuacion);
   healthScore = Number(healthScore);
-
   try {
     var [receta, created] = await Recipes.findOrCreate({
       where: {
@@ -174,9 +173,10 @@ router.post("/recipe", uploader.single("image"), async (req, res) => {
 
     var dbdiet = await Diets.findAll({
       where: {
-        name: diet,
+        name: { [Op.in]: diet },
       },
     });
+    console.log(dbdiet);
     receta.addDiets(dbdiet);
   } catch (error) {
     console.log(error);
