@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getDiets, postRecipe, getRecipes } from "../../actions";
+import { getDiets, postRecipe } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import "./createrecipe.css";
 import { useEffect } from "react";

@@ -20,6 +20,17 @@ export default function Card({
   if (typeof diets[0] === "object") {
     diets = diets.map((e) => e.name);
   }
+
+  const Dishes = (dishTypes) => {
+    if (dishTypes) {
+      return Array.isArray(dishTypes) ? (
+        dishTypes.map((e, index) => <p key={index}>{e}</p>)
+      ) : (
+        <p>{dishTypes}</p>
+      );
+    }
+    return <p> No hay Dishes</p>;
+  };
   return (
     <div className="card">
       <img className="img" src={image} alt="img not found" />
@@ -39,19 +50,7 @@ export default function Card({
             No Diets :P
           </p>
         )}
-        {dishTypes ? (
-          dishTypes.map((e, index) => {
-            return (
-              <p key={index} className="relleno-card">
-                {e}
-              </p>
-            );
-          })
-        ) : (
-          <p className="relleno-card" key={id}>
-            No dishess :P
-          </p>
-        )}
+        {Dishes(dishTypes)}
 
         <div className="btn-container">
           <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>

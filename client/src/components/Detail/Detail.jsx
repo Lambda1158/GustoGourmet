@@ -5,6 +5,7 @@ import { getDetailApi, getDetailDB, resetRecipeDetail } from "../../actions";
 import { useEffect } from "react";
 import "./detail.css";
 import Spinner from "../Spiner/spinner";
+import Footer from "../Footer/Footer";
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const Detail = () => {
         <Link to="/home">
           <button className="btn">take me back</button>
         </Link>
+        <Footer />
       </div>
     );
   }

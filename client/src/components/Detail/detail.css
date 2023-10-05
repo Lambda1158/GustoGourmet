@@ -1,10 +1,65 @@
-.detail{
-    border-color: white;
-    border: 0.15rem solid #f3efe8ef;
-    left: 50%;
-    top: 50%;
-    display: inline-block;
-}
-.detail-background{
-    background-color: rosybrown;
-}
+/* detail.css */
+
+.detail-background {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .detail-background h1 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .detail-background img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .detail-background h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .detail-background ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .detail-background ul li {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .detail-background h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .detail-background p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
