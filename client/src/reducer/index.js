@@ -86,21 +86,21 @@ export default function rootReducer(state = initialState, action) {
             const sortArr1 = action.payload === "menor" ?
                 state.recipe.sort(function (a, b) {
 
-                    if (a.puntuacion > b.puntuacion) {
+                    if (a.healthScore > b.healthScore) {
 
                         return 1
                     }
-                    if (b.puntuacion > a.puntuacion) {
+                    if (b.healthScore > a.healthScore) {
                         return -1
                     }
                     return 0
                 })
 
                 : state.recipe.sort(function (a, b) {
-                    if (a.puntuacion > b.puntuacion) {
+                    if (a.healthScore > b.healthScore) {
                         return -1
                     }
-                    if (b.puntuacion > a.puntuacion) {
+                    if (b.healthScore > a.healthScore) {
                         return 1
                     }
                     return 0

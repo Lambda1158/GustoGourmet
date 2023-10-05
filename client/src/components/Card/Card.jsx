@@ -54,7 +54,7 @@ export default function Card({
         )}
 
         <div className="btn-container">
-          <Link className="link" to={`/detail/${id},${createdInBd ? 1 : 0}`}>
+          <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
             <button className="btn btn-primary">More info</button>
           </Link>
           <button

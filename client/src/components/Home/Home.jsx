@@ -28,7 +28,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getRecipes("milanesa"));
-  }, []);
+  }, [dispatch]);
 
   function handleCange(e) {
     e.preventDefault();
@@ -58,7 +58,6 @@ export default function Home() {
       );
     });
   }
-  console.log(allRecipes);
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />

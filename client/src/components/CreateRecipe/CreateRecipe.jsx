@@ -7,8 +7,8 @@ import { useEffect } from "react";
 import Footer from "../Footer/Footer";
 
 export default function CreateRecipe() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const history = useNavigate();
   const [file, setFile] = useState(null);
   const [imageURL, setImageURL] = useState("");
   const diets = useSelector((state) => state.diets);
@@ -56,6 +56,9 @@ export default function CreateRecipe() {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    if (input.diet.length === 0) {
+      return alert("Debe elegir al menos una Dieta");
+    }
     let testfb = new FormData();
     testfb.append("name", input.name);
     testfb.append("title", input.title);
@@ -70,8 +73,7 @@ export default function CreateRecipe() {
     console.log(testfb);
     dispatch(postRecipe(testfb));
     alert("Recipe creada , anda a buscarla al home :D");
-    dispatch(getRecipes(input.name));
-    history.push("/home");
+    navigate("/home");
   }
   function pop(btn, e) {
     btn.preventDefault();
