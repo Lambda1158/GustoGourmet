@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getRecipes("milanesa"));
+    //dispatch(getRecipes("milanesa"));
   }, [dispatch]);
 
   function handleCange(e) {

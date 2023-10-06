@@ -70,7 +70,6 @@ export default function CreateRecipe() {
     testfb.append("dishtext", input.dishtext);
     testfb.append("dishTypes", input.dishTypes);
     testfb.append("image", file);
-    console.log(testfb);
     dispatch(postRecipe(testfb));
     alert("Recipe creada , anda a buscarla al home :D");
     navigate("/home");

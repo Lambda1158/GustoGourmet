@@ -66,7 +66,6 @@ export function orderByPuntuacion(payload) {
 export function postRecipe(payload) {
   return async function (dispatch) {
     try {
-      console.log(payload);
       axios({
         method: "post",
         url: "http://localhost:3000/api/recipe",
