@@ -1,12 +1,14 @@
 .cuerpo {
-  background-color: rgb(236, 213, 108);
+  background-color: rgb(232, 154, 19);
   height: 210px;
   overflow: hidden;
   position: relative;
   border-radius: 5px;
+  color: white;
+  font-weight: bold;
 }
 .card {
-  background-color: rgb(236, 213, 108);
+  background-color: rgb(232, 154, 19);
   display: flex;
   flex-direction: row;
   align-items: center;
