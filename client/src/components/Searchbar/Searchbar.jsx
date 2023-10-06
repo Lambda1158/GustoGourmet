@@ -5,11 +5,11 @@ import {
   filterRecipeByDiets,
   orderByName,
   orderByPuntuacion,
+  getDiets,
 } from "../../actions";
 import "./searchbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDiets } from "../../actions";
 
 export default function Searchbar({ paginado, setOrden }) {
   const diets = useSelector((state) => state.diets);
@@ -44,14 +44,20 @@ export default function Searchbar({ paginado, setOrden }) {
       </Link>
       <div>
         <select
+          id="puntuacion"
           onChange={(e) => {
             handleSortByPuntuacion(e);
           }}
         >
-          <option value="mayor">Mas puntuados</option>
-          <option value="menor">Menos puntuados</option>
+          <option id="mas-puntuados" value="mayor">
+            Mas puntuados
+          </option>
+          <option id="menos-puntuados" value="menor">
+            Menos puntuados
+          </option>
         </select>
         <select
+          id="byname"
           onChange={(e) => {
             handleSortByName(e);
           }}
@@ -60,6 +66,7 @@ export default function Searchbar({ paginado, setOrden }) {
           <option value="des">Descendente</option>
         </select>
         <select
+          id="por-origen"
           name="byc"
           className="nav-item "
           onChange={(e) => handleFilterBySource(e)}
@@ -69,7 +76,7 @@ export default function Searchbar({ paginado, setOrden }) {
           <option value="api">Api</option>
           <option value="db">Data base</option>
         </select>
-        <select onChange={(e) => handleFilterRecipe(e)}>
+        <select id="por-dietas" onChange={(e) => handleFilterRecipe(e)}>
           <option type="checkbox" id="All" value="All">
             All
           </option>
@@ -87,7 +94,6 @@ export default function Searchbar({ paginado, setOrden }) {
           })}
         </select>
       </div>
-
       <Link to="/post">
         <h3 className="title-home">Create</h3>
       </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailApi, getDetailDB, resetRecipeDetail } from "../../actions";
 import { useEffect } from "react";
@@ -7,6 +7,7 @@ import "./detail.css";
 import Spinner from "../Spiner/spinner";
 import Footer from "../Footer/Footer";
 const Detail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   var cargando = useSelector((state) => state.cargando);
@@ -20,6 +21,10 @@ const Detail = () => {
     };
   }, [dispatch]);
   const myRecipe = useSelector((state) => state.detail);
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate("/home");
+  };
 
   function contenido() {
     if (cargando) {
@@ -65,9 +70,9 @@ const Detail = () => {
         ) : (
           <p>Loading ...</p>
         )}
-        <Link to="/home">
-          <button className="btn">take me back</button>
-        </Link>
+        <button onClick={handleClick} className="btn">
+          take me back
+        </button>
         <Footer />
       </div>
     );

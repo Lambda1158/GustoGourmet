@@ -24,46 +24,45 @@ export default function Card({
   const Dishes = (dishTypes) => {
     if (dishTypes) {
       return Array.isArray(dishTypes) ? (
-        dishTypes.map((e, index) => <p key={index}>{e}</p>)
+        dishTypes.map((e, index) => <span key={index}> {e}</span>)
       ) : (
-        <p>{dishTypes}</p>
+        <span> {dishTypes}</span>
       );
     }
     return <p> No hay Dishes</p>;
   };
   return (
-    <div className="card">
-      <img className="img" src={image} alt="img not found" />
-      <div className="card-content">
-        <h3>{title}</h3>
-        <p className="relleno-card">Puntuacion: {healthScore} </p>
-        {diets ? (
-          diets.map((e, index) => {
-            return (
-              <p key={index} className="relleno-card">
-                {e}
-              </p>
-            );
-          })
-        ) : (
-          <p className="relleno-card" key={id}>
-            No Diets :P
-          </p>
-        )}
-        {Dishes(dishTypes)}
+    <div className="cuerpo">
+      <h3 className="titulo">{title}</h3>
+      <button value={id} className="close" onClick={(e) => handleDelete(e)}>
+        X
+      </button>
 
-        <div className="btn-container">
-          <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
-            <button className="btn btn-primary">More info</button>
-          </Link>
-          <button
-            value={id}
-            className="btn btn-secondary"
-            onClick={(e) => handleDelete(e)}
-          >
-            X
-          </button>
+      <div className="card">
+        <img className="img" src={image} alt="img not found" />
+        <div className="card-content">
+          <span className="puntuacion">Puntuacion: {healthScore} </span>
+          <div className="dietas">
+            Dietas:
+            {diets.length > 0 ? (
+              diets.map((e, index) => {
+                return (
+                  <span key={index} className="relleno-card">
+                    {e}
+                  </span>
+                );
+              })
+            ) : (
+              <span> no tengo dietas </span>
+            )}
+          </div>
+          <div className="dishes"> Dishes: {Dishes(dishTypes)}</div>
         </div>
+      </div>
+      <div className="boton">
+        <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
+          <button className="info">More Info</button>
+        </Link>
       </div>
     </div>
   );

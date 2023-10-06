@@ -1,35 +1,36 @@
 .nav {
-    background-color: #333; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 15px; /* Espaciado interior */
-    display: flex; /* Contenedor de elementos flexibles */
-    justify-content: space-around; /* Distribución de elementos a lo largo del eje principal */
-    align-items: center; /* Alineación vertical en el centro */
-    height: 90px;
-  }
-  
-  .title-home {
-    margin: 0; /* Elimina el margen predeterminado */
-  }
-  
-  /* Estilos para los select y su contenedor */
-  select {
-    padding: 5px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 3px solid #666;
-  }
-  
-  /* Estilo para los enlaces (Links) */
-  .nav h3 {
-    text-decoration: none;
-    color: rgb(236, 213, 108);
-    margin-left: 10px;
-    font-size: 40px;
-    font-weight: bolder;
-  }
-  
-  /* Estilo para los enlaces al pasar el mouse */
-  .nav a:hover {
-    text-decoration: underline; /* Subrayar en hover */
-  }
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 90px;
+}
+
+.title-home {
+  margin: 0;
+}
+
+select {
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 3px solid #666;
+}
+
+.nav h3,
+.nav a {
+  text-decoration: none;
+  color: rgb(236, 213, 108);
+  margin-left: 10px;
+  font-size: 40px;
+  font-weight: lighter;
+  transition: text-decoration 0.3s ease, font-size 0.3s ease;
+}
+
+.nav h3:hover {
+  text-decoration: underline;
+  text-transform: capitalize;
+  font-size: 42px;
+}

@@ -1,53 +1,64 @@
+.cuerpo {
+  background-color: rgb(236, 213, 108);
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+}
 .card {
+  background-color: rgb(236, 213, 108);
   display: flex;
-  align-items: center;
-  width: 100%;
-  background-color: #cf7c10;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-direction: row;
+  align-items: center;
+  height: 125px;
 }
 
-.card img {
-  width: 80px;
-  height: 80px;
+.img {
+  width: 100px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 100px;
+  border-radius: 50%; /* Esto hace que la imagen sea redonda */
+  margin-right: 20px; /* Espacio entre la imagen y el contenido */
+}
+
+.info {
+  text-align: center;
+}
+
+.dietas,
+.dishes {
+  padding-top: 3px; /* Espacio entre las secciones de dietas y dishes */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.close {
+  position: absolute;
+  z-index: 2;
   border-radius: 50%;
-  margin-right: 20px;
+  font-size: small;
+  background-color: brown;
+  border: brown;
+  top: 10px;
+  right: 10px;
+}
+.titulo {
+  padding: 2px;
+  margin-left: 5px;
+  font-size: x-large;
+  font-weight: lighter;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.puntuacion {
+  padding-top: 5px;
 }
 
-.card-content {
-  flex: 1;
-}
-
-.card h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.card .btn-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card .btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.card .btn-primary {
-  background-color: #007bff;
-}
-
-.card .btn-secondary {
-  background-color: #6c757d;
+.boton {
+  height: 15px;
+  text-align: center;
+  padding-top: 5px;
 }
