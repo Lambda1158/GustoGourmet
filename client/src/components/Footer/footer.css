@@ -1,41 +1,41 @@
 .pies {
-    background-color: #333; /* Color de fondo */
-    color: white; /* Color del texto */
-    display: flex; /* Contenedor de elementos flexibles */
-    justify-content:center; /* Distribución de elementos a lo largo del eje principal */
-    align-items: center; /* Alineación vertical en el centro */
-    position:fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  /* Estilos para los iconos de redes sociales */
-  .icon-conteiner {
-    text-align: center; /* Centrar el contenido horizontalmente */
-  }
-  
-  /* Estilos para el texto y los enlaces en el footer */
-  .footer-info {
-    text-align: center; /* Centrar el texto horizontalmente */
-    max-width: 300px; /* Ancho máximo del contenido de información */
-    padding-top: 15px;
-  }
-  
-  /* Estilo para los enlaces en el footer */
-  .footer-info p {
-    color: rgb(236, 213, 108);
-    text-decoration: none; /* Quita el subrayado de los enlaces */
-  }
-  
-  /* Estilo para los enlaces en el footer al pasar el mouse */
-  .footer-info a:hover {
-    text-decoration: underline; /* Subrayado en hover */
-  }
-  
-  /* Estilos para los iconos en el footer */
-  .linkedin,
-  .github {
-    color: rgb(236, 213, 108);
-    margin: 8px; /* Espacio alrededor de los iconos */
-  }
+  background-color: #333; /* Color de fondo */
+  color: white; /* Color del texto */
+  display: flex; /* Contenedor de elementos flexibles */
+  justify-content: center; /* Distribución de elementos a lo largo del eje principal */
+  align-items: center; /* Alineación vertical en el centro */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Estilos para los iconos de redes sociales */
+.icon-conteiner {
+  text-align: center; /* Centrar el contenido horizontalmente */
+}
+
+/* Estilos para el texto y los enlaces en el footer */
+.footer-info {
+  text-align: center; /* Centrar el texto horizontalmente */
+  max-width: 300px; /* Ancho máximo del contenido de información */
+  padding-top: 15px;
+}
+
+/* Estilo para los enlaces en el footer */
+.footer-info p {
+  color: var(--color-crema);
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+
+/* Estilo para los enlaces en el footer al pasar el mouse */
+.footer-info a:hover {
+  text-decoration: underline; /* Subrayado en hover */
+}
+
+/* Estilos para los iconos en el footer */
+.linkedin,
+.github {
+  color: var(--color-crema);
+  margin: 8px; /* Espacio alrededor de los iconos */
+}

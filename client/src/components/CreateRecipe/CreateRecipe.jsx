@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./createrecipe.css";
 import { useEffect } from "react";
 import Footer from "../Footer/Footer";
+import { BsFillImageFill } from "react-icons/bs";
 
 export default function CreateRecipe() {
   const navigate = useNavigate();
@@ -48,11 +49,13 @@ export default function CreateRecipe() {
   function handleDish(e) {
     e.preventDefault();
     let aux = input.dishtext;
-    setInput({
-      ...input,
-      dishTypes: [...input.dishTypes, aux],
-      dishtext: "",
-    });
+    if (aux && input.dishTypes.length < 4) {
+      setInput({
+        ...input,
+        dishTypes: [...input.dishTypes, aux],
+        dishtext: "",
+      });
+    }
   }
   function handleSubmit(e) {
     e.preventDefault();
@@ -91,51 +94,53 @@ export default function CreateRecipe() {
   }, [dispatch]);
   return (
     <>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
       <div className="form-principal">
-        <h1>Create your own unique recipe</h1>
+        <h1>Crear Nueva Receta </h1>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="c2">
-            <div className="contenedor-inputs">
-              {formfield.map((e, index) => {
-                return (
-                  <div key={index}>
-                    <label htmlFor={e.label}>{e.label}</label>
-                    <input
-                      id={e.label}
-                      onChange={handleChange}
-                      value={input[e.name]}
-                      name={e.name}
-                      type={e.type}
-                      key={index}
-                      required
-                      autoComplete="off"
-                      {...(e.type === "number" ? { min: 0, max: 100 } : {})}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <div className="contenedor-imagen">
-              <label htmlFor="imagen">Imagen</label>
-              <input
-                id="imagen"
-                type="file"
-                name="image"
-                onChange={handleFile}
-              />
-              {imageURL && (
-                <div>
-                  <img src={imageURL} alt="Previsualización" width="200" />
+          <div className="divisor">
+            <div className="input-dieta">
+              <div className="c2">
+                <div className="contenedor-inputs">
+                  {formfield.map((e, index) => {
+                    return (
+                      <div key={index}>
+                        <label htmlFor={e.label}>{e.label}</label>
+                        <input
+                          id={e.label}
+                          onChange={handleChange}
+                          value={input[e.name]}
+                          name={e.name}
+                          type={e.type}
+                          key={index}
+                          required
+                          autoComplete="off"
+                          {...(e.type === "number" ? { min: 0, max: 100 } : {})}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
-          </div>
-          <div className="tipoDeDietas">
-            <div className="create-recipe">
-              <p>Diets:</p>
+                <div className="contenedor-imagen">
+                  <label htmlFor="imagen">
+                    <BsFillImageFill
+                      className="custom-file-upload"
+                      htmlFor="imagen"
+                    ></BsFillImageFill>
+                  </label>
+                  <input
+                    id="imagen"
+                    type="file"
+                    name="image"
+                    onChange={handleFile}
+                  />
+                  {imageURL && (
+                    <div>
+                      <img src={imageURL} alt="Previsualización" width="200" />
+                    </div>
+                  )}
+                </div>
+              </div>
+              <h1>Lista de Dietas </h1>
               <div className="opciones">
                 {diets.map((e, index) => (
                   <div key={index} className="opciones-items">
@@ -152,35 +157,49 @@ export default function CreateRecipe() {
                 ))}
               </div>
             </div>
+            <div className="dish">
+              <h1>DishType</h1>
+              <input
+                style={{ marginRight: "10px" }}
+                type="text"
+                value={input.dishtext}
+                name="dishtext"
+                onChange={(e) => handleChange(e)}
+              />
+              <button
+                style={{ marginBottom: "20px" }}
+                className="b1"
+                onClick={(e) => handleDish(e)}
+              >
+                Push dish
+              </button>
+              {input.dishTypes.map((e, index) => {
+                return (
+                  <div key={index}>
+                    <span style={{ marginRight: "10px" }}>{e}</span>
+                    <button
+                      style={{ marginBottom: "10px" }}
+                      name="dishTypes"
+                      className="b1"
+                      onClick={(btn) => {
+                        pop(btn, e);
+                      }}
+                    >
+                      Eliminar Dish
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="create-recipe">
-            <p>DishType</p>
-            <input
-              type="text"
-              value={input.dishtext}
-              name="dishtext"
-              onChange={(e) => handleChange(e)}
-            />
-            <button onClick={(e) => handleDish(e)}>Push dish</button>
-            {input.dishTypes.map((e, index) => {
-              return (
-                <div key={index}>
-                  <p>{e}</p>
-                  <button
-                    name="dishTypes"
-                    onClick={(btn) => {
-                      pop(btn, e);
-                    }}
-                  >
-                    Eliminar Dish
-                  </button>
-                </div>
-              );
-            })}
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <button className="b1" type="submit">
+              Post Receta
+            </button>
+            <Link to="/home">
+              <button className="b1">Volver</button>
+            </Link>
           </div>
-          <button className="btn" type="submit">
-            POST!
-          </button>
         </form>
       </div>
       <Footer />

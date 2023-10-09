@@ -1,101 +1,155 @@
 .form-principal {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgb(235, 198, 34);
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  form {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: var(---color-marron);
+  border: 3px solid #f9e0bb;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffc26f;
+  font-style: initial;
+  font-size: x-large;
+  font-weight: 400;
+  margin-top: 2%;
+  margin-bottom: 90px;
+}
 
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding: 5px;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="file"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 200px;
-    
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .create-recipe {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+label {
+  font-weight: 400;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 200px;
+  font-weight: 400;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.create-recipe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.opciones {
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border-radius: 5px;
+  border: 3px solid #ffc26f;
+  margin-bottom: 8px;
+}
+
+.opciones-items {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.b1 {
+  background-color: #ffc26f;
+  color: #884a39;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.b1:hover {
+  background-color: #f9e0bb;
+  color: #ffc26f;
+}
+.c2 {
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+}
+.contenedor-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.contenedor-imagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contenedor-imagen label {
+  font-size: 35px;
+  padding: 10px;
+}
+.contenedor-imagen input {
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+}
+
+.titulo-dietas {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 40px;
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+.divisor {
+  display: flex;
+  flex-direction: row;
+}
+
+.dish {
+  border-radius: 5px;
+  width: 700px;
+  padding: 30px;
+}
+
+@media screen and (max-width: 768px) {
   .opciones {
-    border: 3px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  
-  .opciones-items {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-  }
-  
-  .btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  .c2{
-    display: flex;
-    flex:row;
-    justify-content: space-around;
-  }
-  .contenedor-inputs{
-    display: flex;
     flex-direction: column;
   }
-  .contenedor-imagen{
-    display: flex;
+  .c2 {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
-  .contenedor-imagen label {
-    font-size: 35px;
-    padding: 10px;
+  .divisor {
+    flex-direction: column;
+  }
+  .dish {
+    width: auto;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+}
 
-  }
-  .contenedor-imagen input {
-    padding: 10px;
-    width: 100%;
-    height: 50px;
-
-  }
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  width: 300px;
+  height: 150px;
+  cursor: pointer;
+}

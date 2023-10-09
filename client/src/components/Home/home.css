@@ -22,7 +22,7 @@ body {
   height: 600px;
   width: 1300px;
   margin-left: 20%;
-  margin-top: 1.2%;
+  margin-top: 0;
   display: grid;
   flex-wrap: wrap;
   justify-content: space-between;

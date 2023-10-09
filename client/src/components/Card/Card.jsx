@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import "./card.css";
 import { deleteRecipe } from "../../actions";
 export default function Card({
@@ -34,10 +33,6 @@ export default function Card({
   return (
     <div className="cuerpo">
       <h3 className="titulo">{title}</h3>
-      <button value={id} className="close" onClick={(e) => handleDelete(e)}>
-        X
-      </button>
-
       <div className="card">
         <img className="img" src={image} alt="img not found" />
         <div className="card-content">
@@ -60,9 +55,26 @@ export default function Card({
         </div>
       </div>
       <div className="boton">
-        <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
-          <button className="info">More Info</button>
-        </Link>
+        <div>
+          <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
+            <button
+              style={{ fontSize: "12px", padding: "10px" }}
+              className="b1"
+            >
+              More Info
+            </button>
+          </Link>
+        </div>
+        <div>
+          <button
+            value={id}
+            style={{ fontSize: "12px", padding: "10px" }}
+            className="b1"
+            onClick={handleDelete}
+          >
+            Cerrar
+          </button>
+        </div>
       </div>
     </div>
   );

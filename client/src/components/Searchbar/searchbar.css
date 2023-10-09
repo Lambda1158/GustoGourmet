@@ -22,11 +22,13 @@ select {
 .nav h3,
 .nav a {
   text-decoration: none;
-  color: rgb(236, 213, 108);
+  color: var(--color-crema);
   margin-left: 10px;
   font-size: 40px;
   font-weight: lighter;
-  transition: text-decoration 0.3s ease, font-size 0.3s ease;
+  transition:
+    text-decoration 0.3s ease,
+    font-size 0.3s ease;
 }
 
 .nav h3:hover {
