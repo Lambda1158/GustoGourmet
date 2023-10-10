@@ -58,7 +58,10 @@ export default function Card({
         <div>
           <Link className="link" to={`/detail/${id}${createdInBd ? "b" : "a"}`}>
             <button
-              style={{ fontSize: "12px", padding: "10px" }}
+              style={{
+                backgroundColor: "#c38154",
+                fontSize: "15px",
+              }}
               className="b1"
             >
               More Info
@@ -68,7 +71,7 @@ export default function Card({
         <div>
           <button
             value={id}
-            style={{ fontSize: "12px", padding: "10px" }}
+            style={{ backgroundColor: "#c38154", fontSize: "15px" }}
             className="b1"
             onClick={handleDelete}
           >

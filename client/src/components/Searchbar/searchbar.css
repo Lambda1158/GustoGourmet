@@ -26,9 +26,7 @@ select {
   margin-left: 10px;
   font-size: 40px;
   font-weight: lighter;
-  transition:
-    text-decoration 0.3s ease,
-    font-size 0.3s ease;
+  transition: text-decoration 0.3s ease, font-size 0.3s ease;
 }
 
 .nav h3:hover {

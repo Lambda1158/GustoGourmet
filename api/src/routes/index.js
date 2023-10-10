@@ -109,7 +109,7 @@ router.get("/recipeApi/id/:id/", async (req, res) => {
       puntuacion: reqApi.data.spoonacularScore,
       dishTypes: reqApi.data.dishTypes,
       analyzedInstructions: reqApi.data.analyzedInstructions[0].steps.map(
-        (e) => "paso:" + e.number + " " + e.step
+        (e) => " Paso: " + e.number + " _" + e.step
       ),
       image: reqApi.data.image,
     };

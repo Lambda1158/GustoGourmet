@@ -1,18 +1,18 @@
 .cuerpo {
-  background-color: var(---color-marron);
+  background-color: var(--color-crema);
   height: 215px;
   overflow: hidden;
   position: relative;
   border-radius: 5px;
-  color: var(--color-crema);
+  color: var(--color-marron);
   font-weight: 700;
 }
 .card {
-  background-color: var(---color-marron);
+  background-color: var(--color-crema);
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 125px;
+  height: 100px;
   font-weight: 400;
 }
 
@@ -36,13 +36,8 @@
   -webkit-line-clamp: 2;
 }
 
-.close {
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  right: 10px;
-}
 .titulo {
+  text-align: center;
   padding: 2px;
   margin-left: 5px;
   font-size: x-large;
@@ -57,9 +52,6 @@
 }
 
 .boton {
-  height: 15px;
-  text-align: center;
-  padding-top: 5px;
   display: flex;
   justify-content: space-evenly;
   border-top: 3px solid var(--color-crema);
