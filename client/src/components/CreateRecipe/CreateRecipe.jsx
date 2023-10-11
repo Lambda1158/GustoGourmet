@@ -17,10 +17,10 @@ export default function CreateRecipe() {
     name: "",
     title: "",
     summary: "",
-    puntuacion: 0,
+    puntuacion: "",
     step: "",
     diet: [],
-    healthScore: 0,
+    healthScore: "",
     dishtext: "",
     dishTypes: [],
   });
@@ -46,17 +46,21 @@ export default function CreateRecipe() {
       diet: [...input.diet, e.target.value],
     });
   }
-  function handleDish(e) {
+  const handleKey = (e) => {
     e.preventDefault();
-    let aux = input.dishtext;
-    if (aux && input.dishTypes.length < 4) {
-      setInput({
-        ...input,
-        dishTypes: [...input.dishTypes, aux],
-        dishtext: "",
-      });
+    if (e.key === "Enter") {
+      e.preventDefault();
+      let aux = input.dishtext;
+      if (aux && input.dishTypes.length < 4) {
+        setInput({
+          ...input,
+          dishTypes: [...input.dishTypes, aux],
+          dishtext: "",
+        });
+      }
     }
-  }
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
     if (input.diet.length === 0) {
@@ -98,28 +102,26 @@ export default function CreateRecipe() {
         <h1>Crear Nueva Receta </h1>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="divisor">
-            <div className="input-dieta">
-              <div className="c2">
-                <div className="contenedor-inputs">
-                  {formfield.map((e, index) => {
-                    return (
-                      <div key={index}>
-                        <label htmlFor={e.label}>{e.label}</label>
-                        <input
-                          id={e.label}
-                          onChange={handleChange}
-                          value={input[e.name]}
-                          name={e.name}
-                          type={e.type}
-                          key={index}
-                          required
-                          autoComplete="off"
-                          {...(e.type === "number" ? { min: 0, max: 100 } : {})}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
+            <div className="c2">
+              <div className="contenedor-inputs">
+                {formfield.map((e, index) => {
+                  return (
+                    <div key={index}>
+                      <input
+                        id={e.label}
+                        onChange={handleChange}
+                        value={input[e.name]}
+                        name={e.name}
+                        type={e.type}
+                        key={index}
+                        placeholder={e.label}
+                        required
+                        autoComplete="off"
+                        {...(e.type === "number" ? { min: 0, max: 100 } : {})}
+                      />
+                    </div>
+                  );
+                })}
                 <div className="contenedor-imagen">
                   <label htmlFor="imagen">
                     <BsFillImageFill
@@ -140,21 +142,23 @@ export default function CreateRecipe() {
                   )}
                 </div>
               </div>
-              <h1>Lista de Dietas </h1>
-              <div className="opciones">
-                {diets.map((e, index) => (
-                  <div key={index} className="opciones-items">
-                    <label htmlFor={e}>{e}</label>
-                    <input
-                      id={e}
-                      key={e}
-                      type="checkbox"
-                      value={e}
-                      name={e}
-                      onChange={(e) => handleCheck(e)}
-                    />
-                  </div>
-                ))}
+              <div className="dietas">
+                <h1>Lista de Dietas </h1>
+                <div className="opciones">
+                  {diets.map((e, index) => (
+                    <div key={index} className="opciones-items">
+                      <label htmlFor={e}>{e}</label>
+                      <input
+                        id={e}
+                        key={e}
+                        type="checkbox"
+                        value={e}
+                        name={e}
+                        onChange={(e) => handleCheck(e)}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="dish">
@@ -163,16 +167,17 @@ export default function CreateRecipe() {
                 style={{ marginRight: "10px" }}
                 type="text"
                 value={input.dishtext}
+                onKeyUp={handleKey}
                 name="dishtext"
                 onChange={(e) => handleChange(e)}
               />
-              <button
+              {/* <button
                 style={{ marginBottom: "20px" }}
                 className="b1"
                 onClick={(e) => handleDish(e)}
               >
                 Push dish
-              </button>
+              </button> */}
               {input.dishTypes.map((e, index) => {
                 return (
                   <div key={index}>
@@ -181,6 +186,7 @@ export default function CreateRecipe() {
                       style={{ marginBottom: "10px" }}
                       name="dishTypes"
                       className="b1"
+                      type="button"
                       onClick={(btn) => {
                         pop(btn, e);
                       }}
@@ -193,11 +199,13 @@ export default function CreateRecipe() {
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <button className="b1" type="submit">
+            <button className="b1" type="button" onClick={handleSubmit}>
               Post Receta
             </button>
             <Link to="/home">
-              <button className="b1">Volver</button>
+              <button className="b1" type="button">
+                Volver
+              </button>
             </Link>
           </div>
         </form>

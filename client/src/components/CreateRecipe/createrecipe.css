@@ -30,16 +30,25 @@ label {
   font-size: 23px;
 }
 
+::placeholder {
+  margin-bottom: 5px;
+  padding: 5px;
+  color: var(--color-marron);
+  font-weight: 500;
+  font-size: 23px;
+}
+
 input[type="text"],
-input[type="number"],
-input[type="file"] {
+input[type="number"] {
   padding: 5px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 16px;
-  width: 200px;
+  width: 220px;
   font-weight: 400;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-claro); /* Cambia el color y estilo del borde según tus preferencias */
+  padding: 5px;
 }
 
 input[type="checkbox"] {
@@ -48,7 +57,7 @@ input[type="checkbox"] {
 
 .create-recipe {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -59,12 +68,11 @@ input[type="checkbox"] {
   flex-direction: row;
   border-radius: 5px;
   border: 3px solid #ffc26f;
-  margin-bottom: 8px;
+  height: 500px;
+  width: 250px;
 }
 
 .opciones-items {
-  margin-right: 20px;
-  flex: 1 0 200px;
 }
 
 .c2 {
