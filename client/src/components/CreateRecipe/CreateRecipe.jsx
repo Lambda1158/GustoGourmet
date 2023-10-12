@@ -191,7 +191,7 @@ export default function CreateRecipe() {
                         pop(btn, e);
                       }}
                     >
-                      Eliminar Dish
+                      Eliminar
                     </button>
                   </div>
                 );
