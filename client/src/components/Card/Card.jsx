@@ -43,7 +43,7 @@ export default function Card({
               diets.map((e, index) => {
                 return (
                   <span key={index} className="relleno-card">
-                    {e}
+                    - {e}
                   </span>
                 );
               })
@@ -51,7 +51,7 @@ export default function Card({
               <span> no tengo dietas </span>
             )}
           </div>
-          <div className="dishes"> Dishes: {Dishes(dishTypes)}</div>
+          <div className="dishes"> Dishes:- {Dishes(dishTypes)}</div>
         </div>
       </div>
       <div className="boton">
