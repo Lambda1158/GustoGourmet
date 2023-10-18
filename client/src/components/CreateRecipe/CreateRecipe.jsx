@@ -6,6 +6,7 @@ import "./createrecipe.css";
 import { useEffect } from "react";
 import Footer from "../Footer/Footer";
 import { BsFillImageFill } from "react-icons/bs";
+import { MdOutlinePublishedWithChanges } from "react-icons/md";
 
 export default function CreateRecipe() {
   const navigate = useNavigate();
@@ -46,21 +47,16 @@ export default function CreateRecipe() {
       diet: [...input.diet, e.target.value],
     });
   }
-  const handleKey = (e) => {
+  const handleDish = (e) => {
     e.preventDefault();
-    if (e.key === "Enter") {
-      e.preventDefault();
-      let aux = input.dishtext;
-      if (aux && input.dishTypes.length < 4) {
-        setInput({
-          ...input,
-          dishTypes: [...input.dishTypes, aux],
-          dishtext: "",
-        });
-      }
+    if (input.dishtext && input.dishTypes.length < 5) {
+      setInput({
+        ...input,
+        dishTypes: [...input.dishTypes, input.dishtext],
+        dishtext: "",
+      });
     }
   };
-
   function handleSubmit(e) {
     e.preventDefault();
     if (input.diet.length === 0) {
@@ -96,110 +92,119 @@ export default function CreateRecipe() {
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
+  const Errase = () => {
+    setImageURL(null);
+  };
   return (
     <>
       <div className="form-principal">
-        <h1>Crear Nueva Receta </h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <h1>Crear Una Nueva Receta </h1>
+        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
           <div className="divisor">
-            <div className="c2">
-              <div className="contenedor-inputs">
-                {formfield.map((e, index) => {
-                  return (
-                    <div key={index}>
-                      <input
-                        id={e.label}
-                        onChange={handleChange}
-                        value={input[e.name]}
-                        name={e.name}
-                        type={e.type}
-                        key={index}
-                        placeholder={e.label}
-                        required
-                        autoComplete="off"
-                        {...(e.type === "number" ? { min: 0, max: 100 } : {})}
-                      />
-                    </div>
-                  );
-                })}
-                <div className="contenedor-imagen">
-                  <label htmlFor="imagen">
-                    <BsFillImageFill
-                      className="custom-file-upload"
-                      htmlFor="imagen"
-                    ></BsFillImageFill>
-                  </label>
-                  <input
-                    id="imagen"
-                    type="file"
-                    name="image"
-                    onChange={handleFile}
-                  />
-                  {imageURL && (
-                    <div>
-                      <img src={imageURL} alt="Previsualización" width="200" />
-                    </div>
-                  )}
-                </div>
+            <div className="contenedor-inputs">
+              <h2>Caracteristicas</h2>
+              {formfield.map((e, index) => {
+                return (
+                  <div key={index}>
+                    <input
+                      id={e.label}
+                      onChange={handleChange}
+                      value={input[e.name]}
+                      name={e.name}
+                      type={e.type}
+                      key={index}
+                      placeholder={e.label}
+                      required
+                      autoComplete="off"
+                      {...(e.type === "number" ? { min: 0, max: 100 } : {})}
+                    />
+                  </div>
+                );
+              })}
+              <div className="contenedor-imagen">
+                {imageURL ? (
+                  <>
+                    <img src={imageURL} alt="Previsualización" width="200" />
+                    <p className="cerrar" onClick={Errase}>
+                      <MdOutlinePublishedWithChanges className="cerrar" />
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <label htmlFor="imagen">
+                      <BsFillImageFill
+                        className="custom-file-upload"
+                        htmlFor="imagen"
+                      ></BsFillImageFill>
+                    </label>
+                    <input
+                      id="imagen"
+                      type="file"
+                      name="image"
+                      onChange={handleFile}
+                    />
+                  </>
+                )}
               </div>
-              <div className="dietas">
-                <h1>Lista de Dietas </h1>
-                <div className="opciones">
-                  {diets.map((e, index) => (
-                    <div key={index} className="opciones-items">
-                      <label htmlFor={e}>{e}</label>
-                      <input
-                        id={e}
-                        key={e}
-                        type="checkbox"
-                        value={e}
-                        name={e}
-                        onChange={(e) => handleCheck(e)}
-                      />
-                    </div>
-                  ))}
-                </div>
+            </div>
+            <div className="dietas">
+              <h2>Lista de Dietas </h2>
+              <div className="opciones">
+                {diets.map((e, index) => (
+                  <div key={index} className="opciones-items">
+                    <label htmlFor={e}>{e}</label>
+                    <input
+                      id={e}
+                      key={e}
+                      type="checkbox"
+                      value={e}
+                      name={e}
+                      onChange={(e) => handleCheck(e)}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="dish">
-              <h1>DishType</h1>
+              <h2>Dish Type</h2>
               <input
-                style={{ marginRight: "10px" }}
+                style={{ width: "180px" }}
                 type="text"
                 value={input.dishtext}
-                onKeyUp={handleKey}
                 name="dishtext"
                 onChange={(e) => handleChange(e)}
               />
-              {/* <button
-                style={{ marginBottom: "20px" }}
+              <button
+                style={{ marginLeft: "20px" }}
                 className="b1"
                 onClick={(e) => handleDish(e)}
               >
                 Push dish
-              </button> */}
-              {input.dishTypes.map((e, index) => {
-                return (
-                  <div key={index}>
-                    <span style={{ marginRight: "10px" }}>{e}</span>
-                    <button
-                      style={{ marginBottom: "10px" }}
-                      name="dishTypes"
-                      className="b1"
-                      type="button"
-                      onClick={(btn) => {
-                        pop(btn, e);
-                      }}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                );
-              })}
+              </button>
+              <div className="dish-opciones">
+                {input.dishTypes.map((e, index) => {
+                  return (
+                    <div style={{ marginBottom: "8px" }} key={index}>
+                      <span style={{ marginRight: "10px" }}>{e}</span>
+                      <button
+                        style={{ marginBottom: "10px" }}
+                        name="dishTypes"
+                        className="b1"
+                        type="button"
+                        onClick={(btn) => {
+                          pop(btn, e);
+                        }}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <button className="b1" type="button" onClick={handleSubmit}>
+            <button className="b1" type="submit">
               Post Receta
             </button>
             <Link to="/home">
