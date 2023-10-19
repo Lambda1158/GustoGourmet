@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailApi, getDetailDB, resetRecipeDetail } from "../../actions";
 import { useEffect } from "react";
@@ -19,95 +19,94 @@ const Detail = () => {
     return () => {
       dispatch(resetRecipeDetail());
     };
-  }, [dispatch]);
+  }, [dispatch, id]);
   const myRecipe = useSelector((state) => state.detail);
   const handleClick = (e) => {
     e.preventDefault();
     navigate("/home");
   };
+  const Dietas = () => {
+    if (myRecipe[0]?.createdInBd)
+      return myRecipe[0]?.diets.map((e) => <span key={e.id}>{e.name}</span>);
 
-  function contenido() {
-    if (cargando) {
-      return <Spinner />;
-    }
-    return (
-      <>
-        <div className="detail-background">
-          <h1>{myRecipe[0]?.title}</h1>
-          <div className="detail-foto-puntuacion">
-            <img
-              className="detail-img"
-              src={myRecipe[0]?.image}
-              alt="no cargo :c"
-              height="400px"
-              width="400px"
-            />
-            <div className="detail-puntos">
-              <h2>Dietas de la Receta</h2>
-              {myRecipe[0]?.createdInBd
-                ? myRecipe[0]?.diets.map((e, index) => (
-                    <span key={index}>{e.name} </span>
-                  ))
-                : myRecipe[0]?.diets
-                ? myRecipe[0]?.diets.map((e, index) => (
-                    <span key={index}>{e} </span>
-                  ))
-                : "Sin Dietas provistas por la API"}
-              <h2>Puntuacio de Receta y Salud</h2>
-              {myRecipe[0]?.puntuacion === undefined ? (
-                <span>Puntuacion: {Math.floor(Math.random() * 100) + 1}</span>
-              ) : (
-                <span>Puntuacion:{myRecipe[0].puntuacion}</span>
-              )}
-              <span style={{ marginLeft: "8px" }}>
-                healthScore: {myRecipe[0]?.healthScore}
-              </span>
-              <h2>Dish Types: </h2>
-
+    return myRecipe[0]?.diets.length === 0 ? (
+      <span>No tengo Dietas 😥</span>
+    ) : (
+      myRecipe[0]?.diets.map((e, index) => <span key={index}>{e}</span>)
+    );
+  };
+  function formatearCadena(cadena) {
+    return cadena.replace(/,/g, " ");
+  }
+  const Dishes = () => {
+    if (myRecipe[0]?.createdInBd)
+      return myRecipe[0]?.dishTypes.length === 0 ? (
+        <span>No tengo Dishes 😥</span>
+      ) : (
+        <span>{formatearCadena(myRecipe[0]?.dishTypes)} </span>
+      );
+    return myRecipe[0]?.dishTypes.length === 0 ? (
+      <span>No tengo Dishes 😥</span>
+    ) : (
+      myRecipe[0]?.dishTypes.map((e, index) => <span key={index}>{e}</span>)
+    );
+  };
+  return cargando ? (
+    <Spinner />
+  ) : (
+    <>
+      <div className="detail-background">
+        <h1>{myRecipe[0]?.title}</h1>
+        <div className="detail-foto-puntuacion">
+          <img
+            className="detail-img"
+            src={myRecipe[0]?.image}
+            alt="no cargo :c"
+            height="400px"
+            width="400px"
+          />
+          <div className="detail-puntos">
+            <h2>Dietas de la Receta</h2>
+            {Dietas()}
+            <h2>Puntuacio de Receta y Salud</h2>
+            {myRecipe[0]?.puntuacion === undefined ? (
+              <span>Puntuacion: {Math.floor(Math.random() * 100) + 1}</span>
+            ) : (
+              <span>Puntuacion:{myRecipe[0].puntuacion}</span>
+            )}
+            <span style={{ marginLeft: "8px" }}>
+              healthScore: {myRecipe[0]?.healthScore}
+            </span>
+            <h2>Dish Types: </h2>
+            {Dishes()}
+          </div>
+        </div>
+        <div className="detail-conteiner">
+          <div className="detail-right">
+            <h2>Summary</h2>
+            <span dangerouslySetInnerHTML={{ __html: myRecipe[0]?.summary }} />
+          </div>
+          <div className="detail-left">
+            <h2>Pasos a seguir </h2>
+            <div>
               {myRecipe[0]?.createdInBd ? (
-                <span>{myRecipe[0]?.dishTypes}</span>
+                <span>{myRecipe[0]?.step}</span>
               ) : (
-                myRecipe[0]?.dishTypes?.map((e, index) => (
+                myRecipe[0]?.analyzedInstructions.map((e, index) => (
                   <span key={index}>{e}</span>
                 ))
               )}
             </div>
           </div>
-          <div className="detail-conteiner">
-            <div className="detail-right">
-              <h2>Summary</h2>
-              <span
-                dangerouslySetInnerHTML={{ __html: myRecipe[0]?.summary }}
-              />
-            </div>
-            <div className="detail-left">
-              <h2>Pasos a seguir </h2>
-              <div>
-                {myRecipe[0]?.createdInBd ? (
-                  <span>{myRecipe[0]?.step}</span>
-                ) : (
-                  myRecipe[0]?.analyzedInstructions.map((e, index) => (
-                    <span key={index}>{e}</span>
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
-          <div style={{ width: "95%", textAlign: "center" }}>
-            <button
-              style={{ width: "95%" }}
-              onClick={handleClick}
-              className="b1"
-            >
-              Volver
-            </button>
-          </div>
         </div>
-        <Footer />
-      </>
-    );
-  }
-
-  return <>{contenido()}</>;
+        <div style={{ width: "95%", textAlign: "center" }}>
+          <button style={{ width: "95%" }} onClick={handleClick} className="b1">
+            Volver
+          </button>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 export default Detail;

@@ -6,21 +6,29 @@
   border-radius: 5px;
   color: var(--color-marron);
   font-weight: 700;
+  border: 2px solid var(--color-marron);
 }
 .card {
   background-color: var(--color-crema);
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100px;
+  flex-direction: column;
+  justify-content: center;
+  height: 110px;
   font-weight: 400;
+  flex-wrap: wrap;
+  align-content: stretch;
+  border: 0px;
+}
+.card-content {
+  width: 250px;
 }
 
 .img {
   width: 100px; /* Ajusta el tamaño de la imagen según tus preferencias */
   height: 100px;
   border-radius: 50%; /* Esto hace que la imagen sea redonda */
-  margin-right: 20px; /* Espacio entre la imagen y el contenido */
+  border: 2px solid var(--color-marron);
+  margin-left: 3px;
 }
 
 .info {
@@ -28,8 +36,8 @@
 }
 
 .dietas,
-.dishes {
-  padding-top: 3px; /* Espacio entre las secciones de dietas y dishes */
+.dishes-card {
+  padding-top: 1px; /* Espacio entre las secciones de dietas y dishes */
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -48,11 +56,12 @@
   -webkit-line-clamp: 1;
 }
 .puntuacion {
-  padding-top: 5px;
+  margin: 0;
 }
 
 .boton {
   display: flex;
   justify-content: space-evenly;
-  border-top: 3px solid var(--color-crema);
+  align-items: center;
+  height: 60px;
 }

@@ -19,39 +19,41 @@ export default function Card({
   if (typeof diets[0] === "object") {
     diets = diets.map((e) => e.name);
   }
-
+  function formatearCadena(cadena) {
+    return cadena.replace(/,/g, " ");
+  }
   const Dishes = (dishTypes) => {
-    if (dishTypes) {
+    if (dishTypes.length !== 0) {
       return Array.isArray(dishTypes) ? (
         dishTypes.map((e, index) => <span key={index}> {e}</span>)
       ) : (
-        <span> {dishTypes}</span>
+        <span> {formatearCadena(dishTypes)}</span>
       );
     }
-    return <p> No hay Dishes</p>;
+    return <span> No Tengo Dishes 😥</span>;
   };
   return (
     <div className="cuerpo">
-      <h3 className="titulo">{title}</h3>
+      <h2 className="titulo">{title}</h2>
       <div className="card">
         <img className="img" src={image} alt="img not found" />
         <div className="card-content">
-          <span className="puntuacion">Puntuacion: {healthScore} </span>
+          <p className="puntuacion">Puntuacion: {healthScore} </p>
           <div className="dietas">
-            Dietas:
+            Dietas:{" "}
             {diets.length > 0 ? (
               diets.map((e, index) => {
                 return (
                   <span key={index} className="relleno-card">
-                    - {e}
+                    {e}
                   </span>
                 );
               })
             ) : (
-              <span> no tengo dietas </span>
+              <span> No tengo dietas 😥 </span>
             )}
           </div>
-          <div className="dishes"> Dishes:- {Dishes(dishTypes)}</div>
+          <div className="dishes-card"> Dishes: {Dishes(dishTypes)}</div>
         </div>
       </div>
       <div className="boton">
