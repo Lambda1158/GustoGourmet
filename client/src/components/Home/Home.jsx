@@ -15,6 +15,7 @@ export default function Home() {
   const dispatch = useDispatch();
   var allRecipes = useSelector((state) => state.recipe);
   var cargando = useSelector((state) => state.cargando);
+  var error = useSelector((state) => state.error);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [recipePerPage, setRecipePerPage] = useState(9);
@@ -29,7 +30,10 @@ export default function Home() {
   useEffect(() => {
     //dispatch(getRecipes("milanesa"));
   }, [dispatch]);
-
+  const handlekey = (e) => {
+    e.preventDefault();
+    if (e.keyCode === 13) return dispatch(getRecipes(buscar));
+  };
   function handleCange(e) {
     e.preventDefault();
     setBuscar(e.target.value);
@@ -37,42 +41,48 @@ export default function Home() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes(buscar));
-    setBuscar("");
   }
   function contenido() {
     if (cargando) {
       return <Spinner />;
     }
-    return currentRecipe?.map((receta, index) => {
-      return (
-        <Card
-          key={index}
-          createdInBd={receta.createdInBd}
-          id={receta.id}
-          title={receta.title}
-          image={receta.image}
-          diets={receta.diets}
-          healthScore={receta.healthScore}
-          dishTypes={receta.dishTypes}
-        />
-      );
-    });
+    return error ? (
+      <div>
+        <h1>No hay recetas con ese nombre</h1>
+      </div>
+    ) : (
+      currentRecipe?.map((receta, index) => {
+        return (
+          <Card
+            key={index}
+            createdInBd={receta.createdInBd}
+            id={receta.id}
+            title={receta.title}
+            image={receta.image}
+            diets={receta.diets}
+            healthScore={receta.healthScore}
+            dishTypes={receta.dishTypes}
+          />
+        );
+      })
+    );
   }
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
       <div className="box">
         <input
-          className="input"
+          className="la"
           type="text"
           id="receta"
           autoComplete="off"
-          placeholder="Recipe..."
+          placeholder="Busca tu Receta"
           value={buscar}
+          onKeyUp={handlekey}
           onChange={(e) => handleCange(e)}
         />
         <button className="botonhome" onClick={(e) => handleClick(e)}>
-          Search
+          Buscar
         </button>
       </div>
       <Paginado

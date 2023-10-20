@@ -65,3 +65,8 @@
 .detail-puntos h2 {
   font-size: 30px;
 }
+
+.detail-puntos span {
+  display: table;
+  margin: 0 auto;
+}

@@ -28,7 +28,7 @@
   height: 100px;
   border-radius: 50%; /* Esto hace que la imagen sea redonda */
   border: 2px solid var(--color-marron);
-  margin-left: 3px;
+  margin-left: 15px;
 }
 
 .info {

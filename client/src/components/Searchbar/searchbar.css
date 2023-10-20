@@ -10,6 +10,8 @@
 
 .title-home {
   margin: 0;
+  color: var(--color-crema);
+  font-weight: bolder;
 }
 
 select {
@@ -19,7 +21,7 @@ select {
   border: 3px solid #666;
 }
 
-.nav h3,
+.nav h1,
 .nav a {
   text-decoration: none;
   color: var(--color-crema);
@@ -29,7 +31,7 @@ select {
   transition: text-decoration 0.3s ease, font-size 0.3s ease;
 }
 
-.nav h3:hover {
+.nav h1:hover {
   text-decoration: underline;
   text-transform: capitalize;
   font-size: 42px;

@@ -40,7 +40,7 @@ export default function Searchbar({ paginado, setOrden }) {
   return (
     <nav className="nav">
       <Link to="/">
-        <h3 className="title-home">Recipes App</h3>
+        <h1 className="title-home">GustoGourmet</h1>
       </Link>
       <div>
         <select
@@ -95,7 +95,7 @@ export default function Searchbar({ paginado, setOrden }) {
         </select>
       </div>
       <Link to="/post">
-        <h3 className="title-home">Create</h3>
+        <h1 className="title-home">Crear</h1>
       </Link>
     </nav>
   );

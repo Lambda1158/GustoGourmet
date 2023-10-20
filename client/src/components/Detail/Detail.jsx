@@ -27,32 +27,40 @@ const Detail = () => {
   };
   const Dietas = () => {
     if (myRecipe[0]?.createdInBd)
-      return myRecipe[0]?.diets.map((e) => <span key={e.id}>{e.name}</span>);
+      return <span> {myRecipe[0]?.diets.map((e) => e.name)}</span>;
 
     return myRecipe[0]?.diets.length === 0 ? (
       <span>No tengo Dietas 😥</span>
     ) : (
-      myRecipe[0]?.diets.map((e, index) => <span key={index}>{e}</span>)
+      <span> {myRecipe[0]?.diets.map((e) => e)}</span>
     );
   };
   function formatearCadena(cadena) {
-    return cadena.replace(/,/g, " ");
+    return cadena ? cadena.replace(/,/g, " ") : <></>;
   }
   const Dishes = () => {
     if (myRecipe[0]?.createdInBd)
-      return myRecipe[0]?.dishTypes.length === 0 ? (
-        <span>No tengo Dishes 😥</span>
-      ) : (
+      return myRecipe[0]?.dishTypes ? (
         <span>{formatearCadena(myRecipe[0]?.dishTypes)} </span>
+      ) : (
+        <span>No tengo Dishes 😥</span>
       );
     return myRecipe[0]?.dishTypes.length === 0 ? (
       <span>No tengo Dishes 😥</span>
     ) : (
-      myRecipe[0]?.dishTypes.map((e, index) => <span key={index}>{e}</span>)
+      <span>
+        {" "}
+        {myRecipe[0]?.dishTypes.map((e) => (
+          <>{e} </>
+        ))}
+      </span>
     );
   };
   return cargando ? (
-    <Spinner />
+    <>
+      <Spinner />
+      <Footer />
+    </>
   ) : (
     <>
       <div className="detail-background">
@@ -70,13 +78,16 @@ const Detail = () => {
             {Dietas()}
             <h2>Puntuacio de Receta y Salud</h2>
             {myRecipe[0]?.puntuacion === undefined ? (
-              <span>Puntuacion: {Math.floor(Math.random() * 100) + 1}</span>
+              <span>
+                Puntuacion: {Math.floor(Math.random() * 100) + 1} HealthScore:{" "}
+                {myRecipe[0]?.healthScore}
+              </span>
             ) : (
-              <span>Puntuacion:{myRecipe[0].puntuacion}</span>
+              <span>
+                Puntuacion:{myRecipe[0].puntuacion} HealthScore:{" "}
+                {myRecipe[0]?.healthScore}
+              </span>
             )}
-            <span style={{ marginLeft: "8px" }}>
-              healthScore: {myRecipe[0]?.healthScore}
-            </span>
             <h2>Dish Types: </h2>
             {Dishes()}
           </div>

@@ -20,10 +20,10 @@ export default function Card({
     diets = diets.map((e) => e.name);
   }
   function formatearCadena(cadena) {
-    return cadena.replace(/,/g, " ");
+    return cadena ? cadena.replace(/,/g, " ") : <></>;
   }
   const Dishes = (dishTypes) => {
-    if (dishTypes.length !== 0) {
+    if (dishTypes) {
       return Array.isArray(dishTypes) ? (
         dishTypes.map((e, index) => <span key={index}> {e}</span>)
       ) : (
@@ -38,7 +38,7 @@ export default function Card({
       <div className="card">
         <img className="img" src={image} alt="img not found" />
         <div className="card-content">
-          <p className="puntuacion">Puntuacion: {healthScore} </p>
+          <p className="puntuacion">HealthScore: {healthScore} </p>
           <div className="dietas">
             Dietas:{" "}
             {diets.length > 0 ? (
@@ -66,7 +66,7 @@ export default function Card({
               }}
               className="b1"
             >
-              More Info
+              Mas Info
             </button>
           </Link>
         </div>
