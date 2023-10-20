@@ -87,7 +87,10 @@ router.get("/recipe", async (req, res, next) => {
       };
     });
     let result = [...apiData, ...reqDb];
-    return res.send(result);
+    console.log(result);
+    result.length !== 0
+      ? res.send(result)
+      : res.status(404).send("no se encontro tu receta");
   } else {
     res.status(404).send("name not found");
   }
