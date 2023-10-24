@@ -15,7 +15,7 @@ export default function Paginado({ recipePerPage, allRecipes, paginado }) {
           return (
             <button
               key={number}
-              className="b1"
+              className="b1 bpagina"
               onClick={() => paginado(number)}
               style={{ marginBottom: "5px", borderRadius: "30%" }}
             >

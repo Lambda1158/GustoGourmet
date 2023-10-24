@@ -50,47 +50,53 @@ export default function Home() {
       <div>
         <h1>No hay recetas con ese nombre</h1>
       </div>
+    ) : currentRecipe.length === 0 ? (
+      <></>
     ) : (
-      currentRecipe?.map((receta, index) => {
-        return (
-          <Card
-            key={index}
-            createdInBd={receta.createdInBd}
-            id={receta.id}
-            title={receta.title}
-            image={receta.image}
-            diets={receta.diets}
-            healthScore={receta.healthScore}
-            dishTypes={receta.dishTypes}
-          />
-        );
-      })
+      <div className="grid">
+        {currentRecipe?.map((receta, index) => {
+          return (
+            <Card
+              key={index}
+              createdInBd={receta.createdInBd}
+              id={receta.id}
+              title={receta.title}
+              image={receta.image}
+              diets={receta.diets}
+              healthScore={receta.healthScore}
+              dishTypes={receta.dishTypes}
+            />
+          );
+        })}
+      </div>
     );
   }
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
-      <div className="box">
-        <input
-          className="la"
-          type="text"
-          id="receta"
-          autoComplete="off"
-          placeholder="Busca tu Receta"
-          value={buscar}
-          onKeyUp={handlekey}
-          onChange={(e) => handleCange(e)}
+      <div className="contenido-home">
+        <div className="box">
+          <input
+            className="la"
+            type="text"
+            id="receta"
+            autoComplete="off"
+            placeholder="Busca tu Receta"
+            value={buscar}
+            onKeyUp={handlekey}
+            onChange={(e) => handleCange(e)}
+          />
+          <button className="botonhome" onClick={(e) => handleClick(e)}>
+            Buscar
+          </button>
+        </div>
+        {contenido()}
+        <Paginado
+          recipePerPage={recipePerPage}
+          allRecipes={allRecipes.length}
+          paginado={paginado}
         />
-        <button className="botonhome" onClick={(e) => handleClick(e)}>
-          Buscar
-        </button>
       </div>
-      <Paginado
-        recipePerPage={recipePerPage}
-        allRecipes={allRecipes.length}
-        paginado={paginado}
-      />
-      <div className="grid">{contenido()}</div>
       <Footer />
     </div>
   );

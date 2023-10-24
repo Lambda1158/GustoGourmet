@@ -39,64 +39,76 @@ export default function Searchbar({ paginado, setOrden }) {
   }, [dispatch]);
   return (
     <nav className="nav">
-      <Link to="/">
-        <h1 className="title-home">GustoGourmet</h1>
-      </Link>
       <div>
-        <select
-          id="puntuacion"
-          onChange={(e) => {
-            handleSortByPuntuacion(e);
-          }}
-        >
-          <option id="mas-puntuados" value="mayor">
-            Mas puntuados
-          </option>
-          <option id="menos-puntuados" value="menor">
-            Menos puntuados
-          </option>
-        </select>
-        <select
-          id="byname"
-          onChange={(e) => {
-            handleSortByName(e);
-          }}
-        >
-          <option value="asc">Ascendente</option>
-          <option value="des">Descendente</option>
-        </select>
-        <select
-          id="por-origen"
-          name="byc"
-          className="nav-item "
-          onChange={(e) => handleFilterBySource(e)}
-        >
-          <option value="All">Todos</option>
-
-          <option value="api">Api</option>
-          <option value="db">Data base</option>
-        </select>
-        <select id="por-dietas" onChange={(e) => handleFilterRecipe(e)}>
-          <option type="checkbox" id="All" value="All">
-            All
-          </option>
-          {diets.map((e, index) => {
-            return (
-              <option
-                type="checkbox"
-                id={e}
-                value={e.toLowerCase()}
-                key={index}
-              >
-                {e}
-              </option>
-            );
-          })}
-        </select>
+        <Link to="/">
+          <h1 className="title-home">Gusto Gourmet</h1>
+        </Link>
       </div>
-      <Link to="/post">
-        <h1 className="title-home">Crear</h1>
-      </Link>
+      <div className="select-items">
+        <div>
+          <select
+            id="puntuacion"
+            onChange={(e) => {
+              handleSortByPuntuacion(e);
+            }}
+          >
+            <option id="mas-puntuados" value="mayor">
+              Mas puntuados
+            </option>
+            <option id="menos-puntuados" value="menor">
+              Menos puntuados
+            </option>
+          </select>
+        </div>
+        <div>
+          <select
+            id="byname"
+            onChange={(e) => {
+              handleSortByName(e);
+            }}
+          >
+            <option value="asc">Ascendente</option>
+            <option value="des">Descendente</option>
+          </select>
+        </div>
+        <div>
+          <select
+            id="por-origen"
+            name="byc"
+            className="nav-item "
+            onChange={(e) => handleFilterBySource(e)}
+          >
+            <option value="All">Todos</option>
+
+            <option value="api">Api</option>
+            <option value="db">Data base</option>
+          </select>
+        </div>
+        <div>
+          <select id="por-dietas" onChange={(e) => handleFilterRecipe(e)}>
+            <option type="checkbox" id="All" value="All">
+              All
+            </option>
+            {diets.map((e, index) => {
+              return (
+                <option
+                  type="checkbox"
+                  id={e}
+                  value={e.toLowerCase()}
+                  key={index}
+                >
+                  {e}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+      <div>
+        <Link to="/post">
+          <h1 className="title-home">Crear</h1>
+        </Link>
+      </div>
     </nav>
   );
 }

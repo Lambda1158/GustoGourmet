@@ -1,11 +1,12 @@
 .nav {
   background-color: #333;
   color: white;
-  padding: 15px;
   display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  height: 85px;
   justify-content: space-around;
   align-items: center;
-  height: 90px;
 }
 
 .title-home {
@@ -13,26 +14,66 @@
   color: var(--color-crema);
   font-weight: bolder;
 }
-
-select {
+.select-items {
+  display: flex;
+}
+.select-items select,
+.select-items option {
   padding: 5px;
   margin-right: 10px;
   border-radius: 5px;
   border: 3px solid #666;
+  width: 170px;
+  font-size: large;
+  font-weight: 600;
 }
 
 .nav h1,
 .nav a {
+  margin: 0;
   text-decoration: none;
   color: var(--color-crema);
-  margin-left: 10px;
-  font-size: 40px;
-  font-weight: lighter;
-  transition: text-decoration 0.3s ease, font-size 0.3s ease;
+  font-size: 35px;
+  font-weight: 600;
+  transition: font-weight 0.1s ease;
+}
+.nav h1:hover,
+.nav a:hover {
+  font-weight: bolder;
+  font-size: 37px;
 }
 
-.nav h1:hover {
-  text-decoration: underline;
-  text-transform: capitalize;
-  font-size: 42px;
+@media screen and (max-width: 900px) {
+  .nav {
+    margin: 0;
+    padding: 0;
+    width: 160px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background-color: #333;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+  }
+  .select-items select,
+  .select-items option {
+    width: 155px;
+    overflow: scroll;
+    margin-bottom: 5px;
+  }
+  .select-items {
+    flex-direction: column;
+  }
+  .nav h1,
+  .nav a {
+    margin: 0;
+    text-decoration: none;
+    color: var(--color-crema);
+    font-size: 30px;
+    font-weight: lighter;
+    transition: text-decoration 0.3s ease, font-size 0.3s ease;
+    max-width: 160px;
+    white-space: normal;
+  }
 }
