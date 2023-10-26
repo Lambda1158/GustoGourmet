@@ -43,11 +43,11 @@
   font-size: 37px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .nav {
     margin: 0;
     padding: 0;
-    width: 160px;
+    width: 145px;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -58,7 +58,7 @@
   }
   .select-items select,
   .select-items option {
-    width: 155px;
+    width: 137px;
     overflow: scroll;
     margin-bottom: 5px;
   }

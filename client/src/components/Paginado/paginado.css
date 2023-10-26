@@ -1,12 +1,9 @@
 .paginado {
-  position: absolute;
   display: flex;
   padding-right: 1.3rem;
   height: 250px;
   flex-direction: column;
   justify-content: center;
-  margin-left: 15%;
-  top: 300px;
 }
 
 .pagina-btn {
@@ -20,16 +17,22 @@
 .pagina-btn:hover {
   color: white;
 }
-
+.nav-paginado {
+  position: absolute;
+  top: 360px;
+  left: 13%;
+}
 @media screen and (max-width: 1000px) {
   .paginado {
     flex-direction: row;
     height: 50px;
     width: 30px;
-    margin-left: 70%;
-    top: 735px;
   }
   .bpagina {
     margin-right: 7px;
+  }
+  .nav-paginado {
+    margin-left: 35%;
+    margin-top: 370px;
   }
 }

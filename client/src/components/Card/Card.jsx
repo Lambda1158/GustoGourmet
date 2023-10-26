@@ -23,7 +23,7 @@ export default function Card({
     return cadena ? cadena.replace(/,/g, " ") : <></>;
   }
   const Dishes = (dishTypes) => {
-    if (dishTypes) {
+    if (dishTypes && dishTypes.length !== 0) {
       return Array.isArray(dishTypes) ? (
         dishTypes.map((e, index) => <span key={index}> {e}</span>)
       ) : (

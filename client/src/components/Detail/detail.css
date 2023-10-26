@@ -12,12 +12,12 @@
 }
 .detail-background span {
   color: var(--color-claro);
-  font-weight: 300;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 18px;
 }
 .detail-background h2 {
   color: var(--color-marron);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 35px;
   text-decoration: underline;
 }
@@ -69,4 +69,31 @@
 .detail-puntos span {
   display: table;
   margin: 0 auto;
+}
+.spandishtype span {
+  display: inline;
+  margin-left: 4px;
+}
+.spandishtype {
+  padding: 5px;
+  margin-left: 15px;
+}
+@media screen and (max-width: 1000px) {
+  .detail-background {
+    width: 95%;
+    margin-bottom: 60px;
+  }
+  .spandishtype {
+    max-width: 300px;
+    overflow: scroll;
+  }
+  .detail-img {
+    max-width: 100%;
+    height: auto;
+    width: 190px;
+    height: 190px;
+  }
+  .detail-background span {
+    font-weight: 400;
+  }
 }

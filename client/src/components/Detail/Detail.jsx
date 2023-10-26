@@ -48,12 +48,11 @@ const Detail = () => {
     return myRecipe[0]?.dishTypes.length === 0 ? (
       <span>No tengo Dishes 😥</span>
     ) : (
-      <span>
-        {" "}
-        {myRecipe[0]?.dishTypes.map((e) => (
-          <>{e} </>
+      <div className="spandishtype">
+        {myRecipe[0]?.dishTypes.map((e, index) => (
+          <span key={index}>{e}</span>
         ))}
-      </span>
+      </div>
     );
   };
   return cargando ? (

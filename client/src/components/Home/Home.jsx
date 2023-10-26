@@ -71,6 +71,7 @@ export default function Home() {
       </div>
     );
   }
+  console.log(currentRecipe);
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
@@ -91,12 +92,12 @@ export default function Home() {
           </button>
         </div>
         {contenido()}
-        <Paginado
-          recipePerPage={recipePerPage}
-          allRecipes={allRecipes.length}
-          paginado={paginado}
-        />
       </div>
+      <Paginado
+        recipePerPage={recipePerPage}
+        allRecipes={allRecipes.length}
+        paginado={paginado}
+      />
       <Footer />
     </div>
   );

@@ -5,11 +5,10 @@ export default function Paginado({ recipePerPage, allRecipes, paginado }) {
   for (let i = 0; i < Math.ceil(allRecipes / recipePerPage); i++) {
     pageNumbers.push(i + 1);
   }
-  if (pageNumbers.length < 2 || allRecipes === 0) {
-    return <></>;
-  }
-  return (
-    <nav>
+  return pageNumbers.length < 2 || allRecipes === 0 ? (
+    <></>
+  ) : (
+    <nav className="nav-paginado">
       <ul className="paginado">
         {pageNumbers.map((number) => {
           return (
