@@ -1,30 +1,10 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn, Recipes, Diets } = require("./src/db.js");
-const { Sequelize } = require("sequelize");
-
-// Syncing all the models at once.
+require("dotenv").config();
+const port = process.env.PORT || 3000;
 conn.sync({ force: true }).then(() => {
-  server.listen(3000, () => {
-    console.log("%s listening at 3000"); // eslint-disable-line no-console
+  server.listen(port, () => {
+    console.log(`%s listening at ${port}`); // eslint-disable-line no-console
     Diets.bulkCreate(
       [
         { name: "Gluten Free" },
