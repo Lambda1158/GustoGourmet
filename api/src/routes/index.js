@@ -152,7 +152,9 @@ router.get("/types", async (req, res) => {
 });
 router.post("/recipe", uploader.single("image"), async (req, res) => {
   file = req.file;
-  let path = file ? "http://localhost:3000/" + file.filename : "no hay imagen";
+  let path = file
+    ? "https://recipes-app-486l.onrender.com/" + file.filename
+    : "no hay imagen";
 
   let { name, summary, puntuacion, healthScore, step, diet, dishTypes, title } =
     req.body;
