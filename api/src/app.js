@@ -11,7 +11,7 @@ const server = express();
 
 server.name = "API";
 const corsOptions = {
-  origin: "https://recipes-app-486l.onrender.com",
+  origin: "https://recipes-app-ten-alpha.vercel.app",
   credentials: true,
 };
 
