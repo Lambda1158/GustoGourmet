@@ -30,7 +30,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use("/api", routes);
+server.use(routes);
 // Use this after the variable declaration
 // Error catching endware.
 server.use((err, req, res, next) => {

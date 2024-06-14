@@ -18,7 +18,7 @@ export function getRecipes(name) {
       type: LOADING,
     });
     axios
-      .get(`http://localhost:3000/api/recipe?name=${name}`)
+      .get(`https://recipes-app-486l.onrender.com/recipe?name=${name}`)
       .then((recipe) => {
         dispatch({
           type: GET_RECIPES,
@@ -68,7 +68,7 @@ export function postRecipe(payload) {
     try {
       axios({
         method: "post",
-        url: "http://localhost:3000/api/recipe",
+        url: "https://recipes-app-486l.onrender.com/recipe",
         data: payload,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -92,7 +92,7 @@ export function postRecipe(payload) {
 
 export function getDiets() {
   return async function (dispatch) {
-    var info = await axios("http://localhost:3000/api/types");
+    var info = await axios("https://recipes-app-486l.onrender.com/types");
     return dispatch({
       type: GET_DIETS,
       payload: info.data,
@@ -105,7 +105,9 @@ export function getDetailApi(id) {
     dispatch({
       type: LOADING,
     });
-    var info = await axios(`http://localhost:3000/api/recipeApi/id/${id}`);
+    var info = await axios(
+      `https://recipes-app-486l.onrender.com/recipeApi/id/${id}`
+    );
 
     return dispatch({
       type: GET_BY_ID,
@@ -118,7 +120,9 @@ export function getDetailDB(id) {
     dispatch({
       type: LOADING,
     });
-    var info = await axios(`http://localhost:3000/api/recipeDB/id/${id}`);
+    var info = await axios(
+      `https://recipes-app-486l.onrender.com/recipeDB/id/${id}`
+    );
 
     return dispatch({
       type: GET_BY_ID,

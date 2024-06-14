@@ -14,7 +14,7 @@ export default function Footer() {
       </a>
 
       <div className="footer-info">
-        <p>© 2023 Bruno Javier Herrera</p>
+        <p>© 2024 Bruno Javier Herrera</p>
       </div>
 
       <a target="_blank" rel="noreferrer" href="https://github.com/Lambda1158">
