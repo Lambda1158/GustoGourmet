@@ -10,8 +10,20 @@ require("./db.js");
 const server = express();
 
 server.name = "API";
+
+const allowedOrigins = [
+  "http://localhost:3000/",
+  "https://recipes-app-ten-alpha.vercel.app",
+];
+
 const corsOptions = {
-  origin: "https://recipes-app-ten-alpha.vercel.app",
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 };
 
