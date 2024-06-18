@@ -6,17 +6,6 @@
   justify-content: center;
 }
 
-.pagina-btn {
-  background-color: rgb(230, 116, 16);
-  border: none;
-  padding: 0.5em 0.75em;
-  border-radius: 0.25em;
-  height: 50px;
-}
-
-.pagina-btn:hover {
-  color: white;
-}
 .nav-paginado {
   position: absolute;
   top: 360px;
@@ -24,7 +13,7 @@
 }
 @media screen and (max-width: 1000px) {
   .paginado {
-    flex-direction: row;
+    flex-direction: column;
     height: 50px;
     width: 30px;
   }
@@ -32,7 +21,24 @@
     margin-right: 7px;
   }
   .nav-paginado {
-    margin-left: 35%;
-    margin-top: 370px;
+    position: absolute;
+    margin-left: 8%;
+    top: 50%;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1360px) {
+  .paginado {
+    flex-direction: column;
+    height: 50px;
+    width: 30px;
+  }
+  .bpagina {
+    left: 0;
+  }
+  .nav-paginado {
+    position: absolute;
+    left: 2%;
+    margin-top: 0;
   }
 }

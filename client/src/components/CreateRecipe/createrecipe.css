@@ -142,8 +142,38 @@ input[type="checkbox"] {
     align-items: center;
     margin-bottom: 5px;
   }
-  .opciones-items label {
-    font-size: 20px;
+  .form-principal h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .form-principal h2 {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .form-principal input {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  ::placeholder {
+    margin-bottom: 5px;
+    padding: 5px;
+    color: var(--color-marron);
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .dish-opciones {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .custom-file-upload {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .opciones label {
+    font-size: 15px;
+    margin-top: 0;
   }
   .contenedor-inputs {
     text-align: center;
@@ -158,4 +188,43 @@ input[type="file"] {
   height: 140px;
   cursor: pointer;
   text-align: left;
+}
+
+@media (min-width: 1000px) and (max-width: 1360px) {
+  .form-principal {
+    width: 800px;
+  }
+  .form-principal h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .form-principal h2 {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .form-principal input {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  ::placeholder {
+    margin-bottom: 5px;
+    padding: 5px;
+    color: var(--color-marron);
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .dish-opciones {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .custom-file-upload {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .opciones label {
+    font-size: 15px;
+    margin-top: 0;
+  }
 }

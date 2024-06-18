@@ -20,6 +20,7 @@
   border: 0px;
 }
 .card-content {
+  margin-left: 5px;
   width: 250px;
 }
 
@@ -34,7 +35,9 @@
 .info {
   text-align: center;
 }
-
+.b1 {
+  font-size: 15px;
+}
 .dietas,
 .dishes-card {
   padding-top: 1px; /* Espacio entre las secciones de dietas y dishes */
@@ -49,7 +52,7 @@
   padding: 2px;
   margin-left: 5px;
   font-size: x-large;
-  font-weight: lighter;
+  font-weight: medium;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -64,4 +67,35 @@
   justify-content: space-evenly;
   align-items: center;
   height: 60px;
+}
+@media (min-width: 1000px) and (max-width: 1360px) {
+  .cuerpo {
+    height: 180px;
+  }
+  .card {
+    height: 90px;
+  }
+  .titulo {
+    font-size: medium;
+    font-weight: 700;
+  }
+  .b1 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cuerpo {
+    height: 165px;
+  }
+  .card {
+    height: 70px;
+  }
+  .titulo {
+    font-size: medium;
+    font-weight: 700;
+  }
+  .b1 {
+    font-size: 12px;
+  }
 }

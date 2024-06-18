@@ -62,7 +62,6 @@ export default function Card({
             <button
               style={{
                 backgroundColor: "#c38154",
-                fontSize: "15px",
               }}
               className="b1"
             >

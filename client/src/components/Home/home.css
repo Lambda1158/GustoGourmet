@@ -8,16 +8,13 @@ body {
 }
 .box {
   width: 330px;
-  margin-left: 450px;
-  margin-bottom: 20px;
-}
-.contenido-home {
-  position: absolute;
-  left: 20%;
-  top: 11%;
+  margin-left: 45%;
+  margin-top: 20px;
 }
 .grid {
   position: relative;
+  margin-left: 20%;
+  margin-top: 15px;
   height: 600px;
   width: 1300px;
   display: grid;
@@ -60,7 +57,9 @@ body {
   font-size: 18px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 .botonhome:hover {
   background-color: var(--color-marron);
@@ -70,16 +69,31 @@ body {
 @media screen and (max-width: 1000px) {
   .grid {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    overflow: scroll;
+    overflow: hidden;
     width: 400px;
-    height: 625px;
+    left: 16%;
+    gap: 0px;
   }
   .box {
-    margin-left: 10%;
+    margin-left: 40%;
   }
   .contenido-home {
-    margin-left: 7%;
     top: 15px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1360px) {
+  .grid {
+    margin-left: 15%;
+    height: 400px;
+    width: 1000px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    overflow: hidden;
+  }
+  .box {
+    margin-left: 39%;
+    margin-top: 20px;
   }
 }

@@ -87,14 +87,6 @@ const Detail = () => {
                 {myRecipe[0]?.healthScore}
               </span>
             )}
-            <h2>Dish Types: </h2>
-            {Dishes()}
-          </div>
-        </div>
-        <div className="detail-conteiner">
-          <div className="detail-right">
-            <h2>Summary</h2>
-            <span dangerouslySetInnerHTML={{ __html: myRecipe[0]?.summary }} />
           </div>
           <div className="detail-left">
             <h2>Pasos a seguir </h2>
@@ -107,6 +99,14 @@ const Detail = () => {
                 ))
               )}
             </div>
+            <h2>Dish Types: </h2>
+            {Dishes()}
+          </div>
+        </div>
+        <div className="detail-conteiner">
+          <div className="detail-right">
+            <h2>Summary</h2>
+            <span dangerouslySetInnerHTML={{ __html: myRecipe[0]?.summary }} />
           </div>
         </div>
         <div style={{ width: "95%", textAlign: "center" }}>

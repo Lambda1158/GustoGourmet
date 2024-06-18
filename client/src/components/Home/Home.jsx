@@ -8,7 +8,6 @@ import Paginado from "../Paginado/Paginado";
 import Searchbar from "../Searchbar/Searchbar";
 import Footer from "../Footer/Footer";
 import "./home.css";
-
 export default function Home() {
   const [orden, setOrden] = useState("");
   const [buscar, setBuscar] = useState("");
@@ -16,20 +15,42 @@ export default function Home() {
   var allRecipes = useSelector((state) => state.recipe);
   var cargando = useSelector((state) => state.cargando);
   var error = useSelector((state) => state.error);
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipePerPage, setRecipePerPage] = useState(9);
+  const getInitialValue = () => {
+    if (window.innerWidth < 1000) {
+      return 3;
+    } else if (window.innerWidth < 1365) {
+      return 6;
+    } else {
+      return 9;
+    }
+  };
+  const [recipePerPage, setRecipePerPage] = useState(getInitialValue());
   const indexOfLastRecipe = currentPage * recipePerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipePerPage;
-  const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
+  const currentRecipe = allRecipes?.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
   const paginado = (pagNumber) => {
     setCurrentPage(pagNumber);
   };
-
   useEffect(() => {
-    //dispatch(getRecipes("milanesa"));
-  }, [dispatch]);
+    const handleResize = () => {
+      if (window.innerWidth < 1000) {
+        setRecipePerPage(3);
+      } else if (window.innerWidth < 1365) {
+        setRecipePerPage(6);
+      } else {
+        setRecipePerPage(9);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handlekey = (e) => {
     e.preventDefault();
     if (e.keyCode === 13) return dispatch(getRecipes(buscar));
@@ -71,34 +92,31 @@ export default function Home() {
       </div>
     );
   }
-  console.log(currentRecipe);
   return (
     <div className="home-background">
       <Searchbar paginado={setCurrentPage} setOrden={setOrden} />
-      <div className="contenido-home">
-        <div className="box">
-          <input
-            className="la"
-            type="text"
-            id="receta"
-            autoComplete="off"
-            placeholder="Busca tu Receta"
-            value={buscar}
-            onKeyUp={handlekey}
-            onChange={(e) => handleCange(e)}
-          />
-          <button className="botonhome" onClick={(e) => handleClick(e)}>
-            Buscar
-          </button>
-        </div>
-        {contenido()}
+      <div className="box">
+        <input
+          className="la"
+          type="text"
+          id="receta"
+          autoComplete="off"
+          placeholder="Busca tu Receta"
+          value={buscar}
+          onKeyUp={handlekey}
+          onChange={(e) => handleCange(e)}
+        />
+        <button className="botonhome" onClick={(e) => handleClick(e)}>
+          Buscar
+        </button>
       </div>
+      {contenido()}
       <Paginado
         recipePerPage={recipePerPage}
         allRecipes={allRecipes.length}
         paginado={paginado}
       />
-      <Footer />
+      {recipePerPage !== 3 && <Footer />}
     </div>
   );
 }

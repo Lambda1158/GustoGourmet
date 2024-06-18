@@ -106,7 +106,7 @@ export default function Searchbar({ paginado, setOrden }) {
       </div>
       <div>
         <Link to="/post">
-          <h1 className="title-home">Crear</h1>
+          <h1 className="title-home">Crear Receta</h1>
         </Link>
       </div>
     </nav>
