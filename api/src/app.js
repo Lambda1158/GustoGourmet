@@ -12,7 +12,7 @@ const server = express();
 server.name = "API";
 
 const allowedOrigins = [
-  "http://localhost:3000/",
+  "http://localhost:3000",
   "https://recipes-app-ten-alpha.vercel.app",
 ];
 
